@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="ddea4065-5359-4452-8520-02874832da32" name="MediaPlayer" linkedPackageId="e5136896-fb51-4d0b-bb4c-9946f3ebbc10" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c010b66e-c7df-488a-be8a-d7fd44142db7" name="MediaPlayer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1781c04b-6bff-41c9-8070-0feee761332a" />
+        <targetEnds>
+          <association Id="41dd5a50-efc7-4e61-94f9-cb766981e6d7" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="a0280df6-2be5-489b-be79-2b7d6a5cb002" LastKnownName="ControlPanel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2b4a7578-c66e-4fd5-b890-d1cf8f6559b1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1016b9b2-f450-433e-b669-d04475682f54" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e115ee9a-8b13-4d1d-9ad0-993aa235e95d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="90e31322-ace8-4348-b110-b43bfd487269" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="11709d56-13a2-471a-be70-1c9e7e4ce5c1" />
+          </association>
+          <association Id="5b7ef4f1-0c7b-478f-9529-1e3f6bac7dbc" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="477ff04f-209e-4a7f-97a7-b6d8c5f43546" LastKnownName="VideoPlayer" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0e570539-6da4-48b6-8f1f-2287d881bb48" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="65098a23-be3c-4668-989b-7ba069633052" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bf1a4cc7-bed3-4dc2-9370-31973cc898ca" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="aae3adea-7a24-4da0-ad59-a7ba1e732a21" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f0d71b41-beb7-4268-a7bc-24f4e8c942ea" />
+          </association>
+          <association Id="de4747f4-eb41-4448-bd97-fcad2624f65d" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="1d6addb1-186b-4da0-a5d2-a1c842ca4938" LastKnownName="Panel3D" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3a53276b-6d79-44b1-b652-09627e01ac93" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="baed85d0-b5b8-4298-88c6-50c7abd61600" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6d839839-f044-4320-b394-c098ac0ebec7" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="6930c80b-ec78-4756-bd45-4dde52a3bbc4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8dbbb452-66b3-4e57-a855-ed1731fdcbd9" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="013be458-bb58-4e63-a290-9b11daf47c46" name="VideoPanel*  videoPanel()" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1f2f192d-0954-44bc-844e-5b35ec740b4f" />
+          </property>
+          <property Id="eb488399-6d87-4a91-8aa7-6e3841d28780" name="Panel3D*  panel3D" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8c5a4f6c-a96a-4c84-b45b-e31ca4b196ae" />
+          </property>
+          <property Id="90bee019-be5f-4e6f-b4f5-e13724dedfc2" name="ControlPanel*  ctrlPanel" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="15fe0f9c-8845-4b49-847a-5c50ea983b28" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="4e61b5fe-7c4d-4c27-b897-ed4a53739c48" name="mSize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8e680c25-6167-4b6e-9c38-a02016bb3ea5" />
+          </operation>
+          <operation Id="4be5e180-c433-4de4-8198-42464ca2fad6" name="OnPauseBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="0947745b-24ac-42c0-be06-42f4c667d52a" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="5399c899-ca75-4505-8957-051315f01482" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="a9bcc6e7-3205-47a6-bf20-145a5adbe152" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="9a2784c0-f9de-4902-a472-f123e2808577" name="OnStopBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="12608a69-3b2a-4858-b13f-3d9db0b4fb5e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8eab213d-78c7-4a61-864a-a4d5518f60cc" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="55adaa5f-933a-484a-9219-bc72deb12a94" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="3882598c-4fc3-43f2-9956-c6e9578fc5f0" name="OnForwardBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ca565e2a-e974-466b-9111-6ed9a513ba0b" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9011a694-b26b-44d7-8fab-f2980df36660" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="c19eb677-93e9-49ce-bb2a-c9386d2ac85b" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="3be48534-c629-458e-b328-826915ffec19" name="OnBackwardBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="cd0c2554-5816-4fd4-b44b-44434d07b119" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="bd4af4e5-d1d1-47df-9ece-3106aee9df16" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="cd5f79c5-a7d5-4b6c-91bc-50adb2f4215e" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="24b5a5cb-b280-4874-a957-ab5c81c4ae39" name="OnVolumeChange" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a3c49b18-0e50-417b-8edf-09c1f22a1131" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9cb3acab-daaa-48cb-adf7-05349339fe1b" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="f55a2773-9cd6-4308-b598-f977fb25e174" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="62d603be-da9c-4f42-8b3f-d25df9482ea1" name="OnMute" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7b3781a5-7741-40cd-8dc7-d2de28b616ed" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9810b820-569a-40c1-8c28-ea13b5298c3c" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="d14d38cd-f910-41bc-9743-6e9fa6516351" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="0db0a0ba-3dc7-4ac5-b674-e5aa3b2748cb" name="OnSliderLeftDown" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="373c7ddf-6e8b-4e31-9b08-fb01d9a56074" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="68403ab2-f8cf-4d26-9db3-f3cdbe1c09c9" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="b32806c8-6b02-4f6f-b3db-ba60c56669de" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="a82cf8e8-cadc-46aa-b700-ef0ee054bec9" name="OnSliderLeftUp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e478b567-ff04-44d3-95ca-c70723f6cdf1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="94664c69-f902-482f-9221-54297d0f885e" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="465086c9-6fce-4c8d-bc10-263490d735f3" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="488f8f9e-1d59-49d4-a5f1-1a79cc9b5b19" name="OnSliderMotion" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9372bda8-565a-470d-9f60-9c7eb9ed94ee" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="42c1a363-40e5-4461-8544-e35ae96d7ed7" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="eed2c727-dfc3-4b58-967d-02a6944407cd" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="447e5a7d-85ed-4ea4-88d3-367b8c757343" name="OnTimeCtrl" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="47867947-a286-4d9c-8c22-c0eca452a555" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="548b965e-196b-4cd9-8699-aef9321e2f48" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="e112c598-c058-4f8d-bef8-537c2fc99339" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="c1cd6bc3-116a-479c-8189-72100ef543ec" name="OnScoreCtrl" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2a95cd34-0f2d-41dd-8aa9-06f22017c4d6" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="dc65b9a7-6bb7-4fd0-b39f-e95402a2122c" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="49a1c807-c414-4f51-bdfe-e42f300d7c5d" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="64c86089-9598-4616-8e12-00c089fc7790" name="importMedia" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="46f28dcc-ae8b-45e1-8199-aec1db6b4591" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="98745fd5-f588-4747-93c0-eeeddf3aa7a8" name="MediaData" direction="In" isUnique="false">
+                  <elementDefinition Id="93b06082-d564-483a-9866-d901abb23f56" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="de748a9e-82ea-4840-9057-b335676308b0" name="OnPlayBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="15967548-0ca4-4436-9e38-86c5564a172f" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="88667bad-22cf-45b0-8405-4be74551bbb1" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="7a320dd9-792f-4447-9b90-b470239e00a1" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a0280df6-2be5-489b-be79-2b7d6a5cb002" name="ControlPanel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e7cf1039-31eb-4522-b1f4-4e34002993a7" />
+        <ownedAttributesInternal>
+          <property Id="69412595-d187-4390-883d-af6182faad13" name="axToggle*  playPauseBtn" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="bd83059f-5fdf-462e-a04a-235bd0dc0787" />
+          </property>
+          <property Id="ecc0f135-f0fa-4ee3-ad7e-2efcc476639d" name="axButton*  stopBtn" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="aec88807-f83a-4fbd-9772-e2f4219a58be" />
+          </property>
+          <property Id="8c92817e-8965-4af7-88c7-6ef37262b95f" name="axButton*  backwardBtn" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="58e20df0-73e9-413e-b927-5001eac7cf1c" />
+          </property>
+          <property Id="10ba093f-6261-4fd4-885d-1a42b048a09e" name="axButton*  forwardBtn" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="97956fc2-1704-40e8-a184-796cb933dc26" />
+          </property>
+          <property Id="3fc85d11-224a-4620-b675-505f08ab45d4" name="axSlider*  slider" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="44cedef1-b089-42d5-a197-c02be614829c" />
+          </property>
+          <property Id="9c57b7e1-915c-4928-9fb1-26394df1a319" name="axSlider*  volumeCtrl" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3d7558a4-ab5b-4dc9-b07b-0e3928bafab0" />
+          </property>
+          <property Id="f36f6d61-6fbe-428f-b989-362393343466" name="axTimeCtrl*  timeCtrl" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1df748d9-dda3-441b-8345-75bbc1cb0924" />
+          </property>
+          <property Id="916953f5-3de2-49f9-8974-d2ad700a14dc" name="ScoreCtrl*  scoreCtrl" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="034f11d2-aadb-45b9-b25c-7ad518ed510c" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="7c106663-3d15-40eb-b78e-946c801790ef" name="mSize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="99ed991a-076e-4810-bb27-b4eca553867b" />
+          </operation>
+          <operation Id="e1056df3-ef54-40ab-be55-c58b087f9b20" name="OnPlayPauseBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fa66c247-730f-4e72-b5a5-f64411b68056" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="50698199-c7fe-4cef-b9f1-c6d87a2f23ef" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="73c02c47-b1d5-4cb9-8916-2d189369c583" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="97c46a45-4cb3-4bca-886d-e41ee2305622" name="OnStopBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="0c263aa2-9b96-45d6-b7f8-1d705fc6a6a0" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="55c7cdc7-d739-474c-994f-7832f93df3cd" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="ae33e013-9e0d-463b-8985-a705bdc47ab5" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="e7eb91c2-be94-4763-82d7-a0d48a71addf" name="OnBackwardBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="30b0f5a9-bb4c-4b73-8813-6f6c69481755" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="1b940efc-d83a-4510-adfa-a5f9f7fe04b7" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="e4cc74c5-4213-4cf6-98a4-b2d7b09c2e36" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="8629cd46-2a42-4f42-9809-3a66848d2426" name="OnForwardBtn" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8651af2b-b52a-433e-989e-bf6a2eefb0f1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="21011d91-4fc2-43ad-a2e4-6c33774873cf" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="760172ad-9b88-40e7-a414-2a383620fe36" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="ea2e8703-b780-47d6-8ccf-c6044ab8b794" name="OnVolumeChange" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="08c224d2-169e-4fc4-b387-19d9c8032bf6" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="eb3c43ef-5ee4-47e6-85b6-f685affb97da" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="de2ff8c4-35a9-4388-9cd1-a5fe9116ee68" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="b41e18b3-20dd-414f-8fc3-b96248914f97" name="OnMute" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="09a7ed97-63ec-47d0-946c-f9d654107804" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ee230805-4129-4c72-af61-430e63d6f835" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="5967b3d0-cb58-489d-b27a-b339144c88c9" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="dc012354-fc1d-44ac-92a7-64d181c6f60d" name="OnSliderLeftDown" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f6cb15c8-2563-43ac-83b6-84cf846e3353" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="162cad2e-fde7-426c-a16b-94ae14bfedda" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="dbfd14c7-3460-4c87-86b5-905206a5e259" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="45df9320-6355-4819-a2e1-c41d8a3f3b88" name="OnSliderLeftUp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="0acaf168-4379-4c92-a072-51c9ec9d92e4" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f10542c7-e9fa-4c96-bdb0-93cebc5f58a0" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="f03de5ba-1512-4d47-a46e-822a85872037" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="b344fcf3-8f77-4112-8627-66c82cea1e4c" name="OnSliderMotion" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6dfc5c27-915b-4f71-be89-4415931b1bf0" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="31584776-efdb-433a-b227-64c9cc4a15a2" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="074d8978-1eb7-4d38-a02c-ff3513f216fa" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="4c170c48-a6f9-4f20-9d27-9bf0b847b4b7" name="OnTimeCtrl" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="45c7aa01-85c8-4d41-83cf-b2ff6975e4fa" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c5833a82-789f-4c3f-8cf1-5100499bf772" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="6f4e57b3-3e59-47ec-9515-168c9377034a" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="21fd769c-5550-4caa-b3d4-cdf3bc56e968" name="OnScoreCtrl" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8647e04b-26c8-4723-8a2b-221632663932" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="00ad7b0b-7526-49b7-aa7e-f0f2968e5d80" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="b1120a29-cf11-4ac0-92a4-3324a8944f8d" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="477ff04f-209e-4a7f-97a7-b6d8c5f43546" name="VideoPlayer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="99d442bf-17cd-40c3-a9ef-62a64f061f13" />
+        <ownedAttributesInternal>
+          <property Id="0ebc4a89-ecd4-4105-9e50-ca9400c1c2c6" name="libvlc_instance_t*  vlcInst" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="daa45e6d-555e-4887-a10d-7004df46df1b" />
+          </property>
+          <property Id="2304b7ec-805e-4e0a-90b7-5e8f883293a6" name="libvlc_media_t*  vlcMedia" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5b5e59ac-08cc-46d2-aa92-ef4b7d37760a" />
+          </property>
+          <property Id="874ae627-21a9-47b3-ac57-45995f7fcf12" name="libvlc_media_player_t*  vlcPlayer" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="d763e3de-ef2f-443f-a69a-7dec679a2f6c" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="ecb44dd4-67df-447c-ab60-19f44d6c3ed4" name="importVideo" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="762b1834-7b60-4eea-8139-a7ee5aed325d" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="4aff2198-4c4c-41c9-89ec-509301c10665" name="axString path" direction="In" isUnique="false">
+                  <elementDefinition Id="b23fc7e9-50a0-4223-b054-52abe97114fd" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="ae1375b5-8639-4497-bb05-2a9a8e6e6a7a" name="getVideoLenghtMs" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f6a2ade6-322b-434d-bff8-aed6e679dfd0" />
+          </operation>
+          <operation Id="084a8479-0c18-45c3-8087-e6bbaea9f60d" name="getTimeMs" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2f7f06bd-a79c-4b6d-9acc-49349441d588" />
+          </operation>
+          <operation Id="e0985466-9197-428d-8b25-746d068400df" name="setTimeMs" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f0d849b3-d799-43e0-9eaa-126e095903b8" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="dc2f665b-e52a-4869-b3a4-77c62a35d496" name="double ms" direction="In" isUnique="false">
+                  <elementDefinition Id="ba4cbebf-16f1-4e43-9a10-2e9dad279c33" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="2cf1041a-f60d-4308-9be1-8213f5a76fb0" name="play" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="44f2a9d2-13d6-4c97-b022-64462dce346d" />
+          </operation>
+          <operation Id="c2817d1d-6141-4d6a-b494-87428706b29d" name="pause" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ef2d7b98-5f50-4b93-90b6-730e41f9e64c" />
+          </operation>
+          <operation Id="d11b0f7c-e53e-40ac-af78-7f5a1f7529d6" name="stop" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4b15c908-59bf-436d-a2ab-d5c856245689" />
+          </operation>
+          <operation Id="8651d527-d8bb-4d72-8927-ec316ff80e1c" name="mSize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7b005d5c-28cf-4ed6-b5c9-2113e892c774" />
+          </operation>
+          <operation Id="dcfa6f94-d267-4a01-b061-66700adce4e6" name="setVolume" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="81c15d2a-dda5-42f3-bcbd-a833bf44308c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8efc1f91-84c5-4bc3-ac85-99b6b847dd9b" name="double v" direction="In" isUnique="false">
+                  <elementDefinition Id="18990d1b-fad6-4987-99c1-b3aef9ad451a" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1d6addb1-186b-4da0-a5d2-a1c842ca4938" name="Panel3D" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c011576f-7a6b-4912-be64-554944f53651" />
+        <ownedAttributesInternal>
+          <property Id="f76dfa13-5df4-4c00-8910-e6be96752d84" name="IrrlichtDevice* irrDevice" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="dcc944bb-5d3c-4fc0-b43a-c5749a71306b" />
+          </property>
+          <property Id="7fb01d3d-0e79-4552-be20-1effd852e7a7" name="ICameraSceneNode* irrCamera" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="01f36190-310c-42bf-bd61-b6f17edbae86" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="ac817c6c-bc6e-40b3-aae1-48900bdbf3d6" name="void OnPaint" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4f6ec4d6-c9e2-4381-b903-8cb2a47d7e1d" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="6f291d34-ac79-4206-bfa3-e81df72a7e74" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="1ab857b3-c4cb-481b-baa9-8e170122fa06" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="6ef7bd4b-750c-4aef-9d53-1435ba8b8f4e" name="mSize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8957c8db-2491-4050-867f-6e089f11df0d" />
+          </operation>
+          <operation Id="060ed031-10e8-4648-aa7c-f98eb8776052" name="OnMouseLeftDown" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="48e12f75-cced-479e-bf63-10b5e4eb76ef" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="bb7b0181-46fa-4934-9979-e11a4235d6d1" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="f7e6cb03-74d5-4a08-9f1b-4bd9607c5eac" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="c872cb68-a48c-4dea-93e0-4b3d436d509a" name="OnMouseMotion" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d53e859a-52b1-4a14-ae22-853145172844" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="fb1d3d5b-dcf2-48c6-a261-f3fa3c74c1fa" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="83fffcb9-274e-4a4a-ae4b-4f33ea229388" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="b3988422-c2c0-4bd9-85f3-dc7bb9a64b67" name="OnMouseLeftUp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ee3b1a9e-2b96-4f2f-9613-a86c49998aa2" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="fd4dbde9-5739-45a8-a27e-0292e89a13d1" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="49a80047-0eaa-4a01-a97a-d18d5ebfc11a" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="a8dced61-4b28-4821-84fe-3e846c835a9b" name="play" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="465f5187-bb79-4ec7-a3b2-20f464d9d761" />
+          </operation>
+          <operation Id="a58293d0-6005-41a6-9b56-c7eb93e3cbec" name="pause" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b663ae2a-5c9d-4a38-9be7-1e06eb2138b7" />
+          </operation>
+          <operation Id="d6331a7f-3caf-448d-9596-cdd98218afc4" name="stop" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="778c48f2-b66e-4880-bae5-849ecaa62106" />
+          </operation>
+          <operation Id="c0cbb722-e074-4717-8693-09ef3a41e20e" name="setTimeMs" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ee6c167c-4644-41a8-a6a5-e22e00cdd7a4" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="2b5d945b-2595-4d4a-8f41-dd187c62c2e9" name="double ms" direction="In" isUnique="false">
+                  <elementDefinition Id="c5c882c4-b011-4c9a-844a-e3124476f9ba" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="0f4cdb8a-cb1d-4394-ab14-c7b6007e645f" name="import3DScene" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6fcb721d-7942-4d12-a967-fbda8702d484" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="42ec2f6a-9457-4bc1-9be1-c11b07285f3a" name="axString path" direction="In" isUnique="false">
+                  <elementDefinition Id="eb03a02b-9d1f-4867-a6d0-a7c3ba990361" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="88804126-8284-451e-b6b4-2708ebff717d" name="MediaPlayer_ID" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a5a38835-c665-4e30-8404-404ec1f04c0a" />
+        <ownedLiterals>
+          <enumerationLiteral Id="c5ed6d67-0adf-4c38-a27d-8a3767f0ebe9" name="ID_PLAY_PAUSE_BTN ">
+            <elementDefinition Id="fb9c8cee-84cf-4348-8b7c-99c55637809a" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="fe527674-4c86-4185-bdef-c0563e901123" name="ID_STOP_BTN">
+            <elementDefinition Id="6b063edf-0d40-48c9-bba7-4b384ca49baa" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="0f12da9f-8e62-4abd-8c08-5ee80d9b81c4" name="ID_BACKWARD_BtN">
+            <elementDefinition Id="47c06942-417d-4df5-b290-8af928b10ff5" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="4091635a-d205-477a-a661-3022230cd470" name="ID_FORWARD_BTN">
+            <elementDefinition Id="7e894aa5-adb1-49ee-bd52-def7639e8ce4" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="ada8ecf9-9a8c-4cc3-ab17-d9fb720213ac" name="ID_VOLUME_CHANGE">
+            <elementDefinition Id="2779f9b1-091d-4cf7-8671-d33b89689fc6" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="eb6f2aa0-28ec-48e7-9080-6ce0d6a0e06d" name="ID_MUTE_BTN">
+            <elementDefinition Id="aeac8fb6-1af1-4b0b-96fe-b15ea364cd2e" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="7d1b22ac-6723-4b3a-8103-b7ced1a12304" name="ID_SLIDER_LEFT_DOWN">
+            <elementDefinition Id="2f71acfd-b750-4227-bc37-715b1d916786" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="2bcd8318-517e-42fb-93a4-9ca1d7c22315" name="ID_SLIDER_LEFT_UP">
+            <elementDefinition Id="213a31dd-a24d-4324-954b-23617c10b8a7" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="283b383f-653b-4514-ab84-1e3c1a020cfa" name="ID_SLIDER_MOTION">
+            <elementDefinition Id="73987016-77b0-4d00-acb9-9428b48dca6c" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="12aeb166-e794-44b2-9431-8b126f7250de" name="ID_SCORE_CTRL">
+            <elementDefinition Id="ef6e42b0-9de8-424e-ae12-8e0f29de3679" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="046e1afc-3599-4dab-a7c4-ac6b514428ca" name="ID_TIME_CTRL">
+            <elementDefinition Id="8c1b8d55-c358-4e70-9b54-573d7a6e0e0a" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="ed20d497-7a91-402a-a840-4bc641e97dc1" name="ID_MEDIA_CALLBACK">
+            <elementDefinition Id="55c30b60-4c44-4063-a6b7-81ecb53ec721" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="52104ae5-b085-4f61-baa8-88df1b538911" name="ID_PLAY_BTN">
+            <elementDefinition Id="3b38acfc-0283-4a98-a221-23b7dc6cfc35" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="4d968b1b-6e2e-43a3-83a6-98ce24077139" name="ID_PAUSE_BTN">
+            <elementDefinition Id="29edc863-2c35-4d58-8421-9c30c9ae8c89" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="02c786bb-1428-4b9b-a933-04f5233389b5" name="MainFrame" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b5af3eac-5a82-4c34-869f-fb08a351d7bd" />
+        <targetEnds>
+          <association Id="05ebab5c-4316-4f06-b4c2-1b0f3b9f6e91" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="c010b66e-c7df-488a-be8a-d7fd44142db7" LastKnownName="MediaPlayer" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3c590640-e7b7-4340-b701-f04de7f1d273" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="29e7ec28-5816-4297-8c20-ada146bca6bb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c4fd3a68-7056-4445-a5a8-47986e927ed4" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="27e67b50-a016-40c5-8957-9622e5ef8e14" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6ba013ab-f8e6-4d07-946e-d7056e08e282" />
+          </association>
+          <association Id="03d474ae-4ba7-4b0c-ae8a-e4865711ee89" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="daebbf32-459b-4fae-83ba-bfabc32b88cf" LastKnownName="MenuPanel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="224c8f18-eeb6-49e5-9e94-7c20456bb65b" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="57697d51-6645-41b8-9c2e-930c873073cb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e3822524-eb65-4330-b544-e92f3b0ba6ef" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="8ee1a54c-6e6d-4111-bed5-604f8030b298" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b137857f-2e72-4e7b-9b3a-ceb518cd32c8" />
+          </association>
+          <association Id="502d1b67-40e7-4a37-a9b3-4b70f4654683" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="d30b69de-a5f7-4939-b318-ae1b362e37a9" LastKnownName="ScorePanel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="69ac73c8-14ef-445e-bd36-89f38f38ff2c" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ae30b189-b202-417c-ab17-26d1cc4b3420" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="593027f6-041b-493a-b268-f5efe95dd467" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="eed2f8da-a6a0-4404-8f43-a99a66bc91b8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="48826a3f-d075-4056-adad-5e9e87b3458e" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="ed4dafce-b135-44f0-a69b-6f9a507004f6" name="MediaPlayer*  mediaPlayer" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="bbb07083-e00d-4da6-a400-e03abe7dc6cd" />
+          </property>
+          <property Id="b5e43d50-e9f4-4061-b1fc-a3c728f830e8" name="ControlPanel*  controlPanel" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="efbd286c-5ca5-4475-a9eb-630a7e319dbc" />
+          </property>
+          <property Id="8dc93b52-4b51-4121-8efc-bce23df29778" name="VideoPlayer*  videoPlayer" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7f75b28c-9897-4caa-b72f-fed437b7dd97" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="00f6533f-4964-46d4-a94b-f34c103e5050" name="mSize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7d3038c7-f071-4c0f-ac82-359d70132ec8" />
+          </operation>
+          <operation Id="56ae7231-a89b-4943-9b8f-651e1758b0d7" name="OnMediaTimer" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8cc610e0-aacf-42db-bb2e-2ad230d7312c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="fe4d80fa-6207-489d-a674-0c9e70b08968" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="f674229c-7b4e-4343-b636-230996eb485c" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="aacf4bb5-9eeb-47c5-b5ff-5f9c5e497c33" name="SetScoreTimeMs" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2f79e581-53ac-413e-9083-9c4d62fcdad3" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e650f2d4-c42d-4d84-9ab1-50dc2890885a" name="double ms" direction="In" isUnique="false">
+                  <elementDefinition Id="188ef279-c816-44b6-98ab-2c2ab851cfac" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="5a50f548-6bcb-4912-a0a8-244677dd6e5c" name="SetMediaTimeMs" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="915e6d01-09ee-4fdf-b146-f31013fb53a2" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="fee00268-8771-4408-b2b4-d8da7c81e747" name="double ms" direction="In" isUnique="false">
+                  <elementDefinition Id="4d6ae807-6d38-4ca7-8831-4c76e5de3e47" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="45042694-2c57-4e66-bc65-a5ffa523ad87" name="OnScoreLeftUp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4720d509-27d4-4f7b-9527-14110c6d6b2f" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="80302f5e-2daa-4028-b9c4-458308013dcd" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="b247a4d2-c8d0-41d0-8935-6a78db09f544" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="868ce118-d000-4bf2-a349-ef3bfbc26928" name="importData" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c72982a3-344d-42cf-b9d4-f3b47c581652" />
+          </operation>
+          <operation Id="c77afff7-7d89-4fc6-9526-ada53c0ac0d5" name="OnScoreLeftDown" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="83be7f8c-062c-4324-9598-074ac97757bb" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="95d03cd1-614b-4b53-9cb0-0d2277715c4e" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="fc47471d-3d15-4ba4-9750-6a95492cf4db" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="0122adbb-f9e2-4914-a19d-dd63a5d5c213" name="OnMediaChangeTime" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4023af47-8309-4cab-b1f5-40dbf32ebb14" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="71580803-70a9-4468-84e8-5407603ba500" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="6dfb77ef-16bb-42c7-9d2c-1ea6944d95c2" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="09eb4688-ba80-48f6-864f-5d1291270d04" name="OnMenuSelection" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f6c2a4b6-7b8b-418b-bfb5-7b3417875b0c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="bf83f7ef-c652-40ff-823e-2bd226e5202d" name="event" direction="In" isUnique="false">
+                  <elementDefinition Id="80da2675-0372-4542-b77b-08d555999aef" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="daebbf32-459b-4fae-83ba-bfabc32b88cf" name="MenuPanel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4973ed71-4a24-49cc-8e0d-82f74f0b4913" />
+        <ownedOperationsInternal>
+          <operation Id="36bc6cfe-5823-4664-be91-0296e79b7273" name="getFileNames" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bbcd82e2-2294-4271-b297-2901ba39209e" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d30b69de-a5f7-4939-b318-ae1b362e37a9" name="ScorePanel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8f2a3fd4-948d-462a-a519-6b117c10d5fc" />
+        <ownedOperationsInternal>
+          <operation Id="bd270754-fff1-4a0f-9f0f-8fe64f6194c0" name="setScoreData" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1996bbd9-14f1-41d7-a442-869b07100394" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9c62ab5f-f69d-4961-bcc1-59b2007658aa" name="ScoreData" direction="In" isUnique="false">
+                  <elementDefinition Id="6d522027-2c80-427e-abc7-4151305fd7fe" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="5b5926f8-3323-4f6a-9ad8-871090b029b7" name="MainFrame_ID" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="caa317c5-ce40-4881-8ca2-8d128e25cfe1" />
+        <ownedLiterals>
+          <enumerationLiteral Id="12e92ad9-6fa8-40f5-ba38-cb5c630f1d46" name="ID_MEDIA_CHANGE_TIME">
+            <elementDefinition Id="ce95c4f0-e418-4f35-a6a2-e53f30113125" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="9548a11c-eefd-40b0-a37b-ca762f6385d3" name="ID_MEDIA_TIMER">
+            <elementDefinition Id="cbffd25c-a2a2-4cac-9013-a7f233f4207b" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="2898cd3d-d724-4f58-9158-bd62ea9b3323" name="ID_SCORE_LEFT_UP">
+            <elementDefinition Id="c07b878f-2536-4f10-9a25-9439623af13e" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="7c3e2086-b7fc-4eac-a2ce-93f7cd40a825" name="ID_SCORE_LEFT_DOWN">
+            <elementDefinition Id="8c879f2c-4215-43d7-b206-e7a2706ea49f" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="9e37f3d0-613a-43d7-a937-1291f01bd637" name="ID_MENU_SELECTION">
+            <elementDefinition Id="60cd2005-00e3-4b3e-a82d-5ce4d0cb2d9b" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="e5136896-fb51-4d0b-bb4c-9946f3ebbc10" name="MediaPlayer">
+    <elementDefinition Id="efa6fc9d-2fc6-4bdb-a4e0-acfee88694e7" />
+    <profileInstances>
+      <packageHasProfileInstances Id="66b4b9a2-61d6-4e1b-a1b7-d2430688b098">
+        <profileInstance Id="02ced760-7ef9-456e-b111-51a25de559d4" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="cdedb5aa-d41b-4a71-a0e4-88a5692b2e78">
+        <profileInstance Id="0b957a04-8955-4e6f-80cf-3b6472ff01c6" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>
