@@ -11,11 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ControlBar.cpp" />
+    <ClCompile Include="src\mainPhil.cpp" />
     <ClCompile Include="src\mediaPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\main.h" />
+    <ClInclude Include="include\ControlBar.h" />
+    <ClInclude Include="include\mainPhil.h" />
     <ClInclude Include="include\mediaPlayer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
