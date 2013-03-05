@@ -8,6 +8,7 @@
 #define _ORCHESTRA_MAIN_H_
 
 #include "axLib.h"
+#include "3DPanel.h"
 
 class MainFrame : public wxFrame
 {
@@ -25,19 +26,22 @@ public:
 	
 private:
 	
+	//int patate;
 	wxPanel* mainPanel;
+	Device3D* panel3D;
+	//int alex;
 
 	/********************************************************************************//**
 	 * @brief  MainFrame is the only Class to use wxSizeEvent and takes care of 
 	 *		   resizing his child panels
 	 ***********************************************************************************/
-	_EVENT_ void OnSize(wxSizeEvent& event);
+	//_EVENT_ void OnSize(wxSizeEvent& event);
 
 	/********************************************************************************//**
 	 * @brief  MainFrame is the only Class to use wxMwximizeEvent and takes care of 
 	 *		   resizing his child panels
 	 ***********************************************************************************/
-	_EVENT_ void OnMaximize(wxMaximizeEvent& event);
+	//_EVENT_ void OnMaximize(wxMaximizeEvent& event);
 
 	//DECLARE_EVENT_TABLE()
 };

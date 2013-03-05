@@ -62,7 +62,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(AX_LIB)/Debug;..\irrlicht-1.8\lib\Win32-visualstudio</AdditionalLibraryDirectories>
-      <AdditionalDependencies>axLib.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>axLib.lib;Irrlicht.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

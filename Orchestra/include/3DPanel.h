@@ -3,21 +3,60 @@
 
 #include "axLib.h"
 #include "irrlicht.h"
+#include <list>
 
-class mIrrDevice;
-class mIrrWindow;
+typedef irr::SIrrlichtCreationParameters	irr_CreateParam;
+typedef irr::video::E_DRIVER_TYPE			irr_DriverType;
+typedef irr::IrrlichtDevice					irr_Device;
+typedef irr::scene::ISceneManager			irr_SceneManager;
+typedef irr::video::IVideoDriver			irr_VideoDriver;
+typedef irr::scene::ICameraSceneNode		irr_Camera;
+typedef irr::scene::ISceneNode				irr_Node;
+typedef irr::video::SColor					irr_Color;
+typedef irr::core::dimension2d<irr::s32>	irr_Dimension2D;
+typedef irr::core::vector3df				irr_Vector3D;
+typedef irr::video::E_MATERIAL_FLAG			irr_MaterialFlag;
+typedef irr::s32							irr_S32;
+typedef irr::scene::IAnimatedMesh			irr_Mesh;
+typedef irr::scene::IAnimatedMeshSceneNode	irr_SceneMesh;
+typedef irr::scene::IBoneSceneNode			irr_Bone;
+typedef irr::core::quaternion				irr_quatornion;
+//typedef irr::scene::IAnimatedMeshSceneNode	irr_Animated_Node;
 
-typedef irr::SIrrlichtCreationParameters m3d_CreateParam;
-typedef irr::video::E_DRIVER_TYPE        m3d_DriverType;
-typedef irr::IrrlichtDevice              m3d_Device;
-typedef irr::scene::ISceneManager        m3d_SceneManager;
-typedef irr::video::IVideoDriver         m3d_VideoDriver;
-typedef irr::scene::ICameraSceneNode     m3d_Camera;
-typedef irr::scene::ISceneNode           m3d_Node;
-typedef irr::video::SColor               m3d_Color;
-typedef irr::core::dimension2d<irr::s32> m3d_Dimension2D;
-typedef irr::core::vector3df             m3d_Vector3D;
-typedef irr::video::E_MATERIAL_FLAG      m3d_MaterialFlag;
-typedef irr::s32                         m3d_S32;
+class Device3D : public wxWindow
+{
+public:
+	Device3D(wxWindow* win, irr_DriverType type = irr::video::EDT_OPENGL, bool bResizeable = true);
+	~Device3D();
+
+	//inline irr_Device		*GetHandle()		{ return irrDevice; }
+	inline irr_SceneManager *GetSceneManager()	{ return irrDevice ? irrDevice->getSceneManager() : NULL; }
+	inline irr_VideoDriver	*GetVideoDriver()	{ return irrDevice ? irrDevice->getVideoDriver()  : NULL; }
+
+	irr_Camera* AddCamera(irr_Node* parent = 0, 
+						  irr_Vector3D& position = irr_Vector3D(0.0f, 0.0f, 0.0f), 
+						  irr_Vector3D& lookat = irr_Vector3D(0.0f, 0.0f, 1.0f), 
+						  irr_S32 id = 1);
+
+	//static const wxSize MINSIZE;
+protected:
+	irr_Device* irrDevice;
+	irr_Bone* hand_, *hips_, *forearm_L, *upper_arm_L;
+
+	irr_Camera* camera_;
+
+	bool Compute(irr_Bone* boneNode, irr_Bone* rootBoneNode, irr_Vector3D target);
+
+	double theta;
+	int clickPts_x;
+
+	void OnPaint(wxPaintEvent &event);
+	void OnMouseLeftDown(wxMouseEvent& event);
+	void OnMouseMotion(wxMouseEvent& event);
+	void OnMouseLeftUp(wxMouseEvent& event);
+
+
+	DECLARE_EVENT_TABLE()
+};
 
 #endif
