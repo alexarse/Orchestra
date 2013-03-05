@@ -24,22 +24,31 @@ bool Orchestra::OnInit()
 	return true;
 }
 
-MainFrame::MainFrame(const axString& title): axFrame(NULL, axID_ANY, title, axPoint(30, 30), axSize(500, 500))
+
+//---------------------------------------------------------------------------------
+// MainFrame
+//---------------------------------------------------------------------------------
+BEGIN_EVENT_TABLE(MainFrame, wxFrame)
+	EVT_SIZING(MainFrame::OnSize)
+	EVT_SIZE(MainFrame::OnSize)
+	//EVT_MAXIMIZE(MainFrame::OnMaximize)
+END_EVENT_TABLE()
+
+MainFrame::MainFrame(const axString& title)
+    : axFrame(NULL, axID_ANY, title, axPoint(30, 30), axSize(500, 500))
 {
 	SetBackgroundColour(axColor(80, 80, 80));
 	mainPanel = new axPanel(this, axID_ANY, axPoint(0, 0), this->GetSize());
 	mainPanel->SetBackgroundColour(axColor(80, 80, 80));
 
-    ControlBar* test = new ControlBar(mainPanel, wxID_ANY, wxPoint(0 , this->GetSize().y - 100), wxSize(this->GetSize().x, 100));
-    //test->mSize(wxSize(500, 5));
+    testBar = new ControlBar(mainPanel, wxID_ANY, wxPoint(0 , this->GetSize().y - 100), wxSize(this->GetSize().x, 100));
 
 
-    //Sleep(2000);
 
-    //test->mSize(wxSize(100, 50));
+}
 
-    //Sleep(2000);
 
-    //test->mSize(wxSize(200, 150));
-
+void MainFrame::OnSize(wxSizeEvent& event)
+{
+    testBar->mSize(wxSize(this->GetSize().x, this->GetSize().y));
 }

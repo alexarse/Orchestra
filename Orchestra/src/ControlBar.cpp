@@ -11,8 +11,8 @@ enum
 };
 
 BEGIN_EVENT_TABLE(ControlBar, wxPanel)
-	EVT_PAINT(ControlBar::OnPaint)
-    
+	//EVT_PAINT(ControlBar::OnPaint)
+
     //EVT_BUTTON(BACK_BTN, ControlBar::test)
 
 	//EVT_BUTTON(ID_RIGHT_BTN, ControlBar::OnBtnNext)
@@ -28,7 +28,7 @@ ControlBar::ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     : wxPanel(win, id, pt, size)
 {
     // Heavy lifting
-    this->SetBackgroundStyle(wxBG_STYLE_CUSTOM); // Tell some platforms not to use default background.
+    //this->SetBackgroundStyle(wxBG_STYLE_CUSTOM); // Tell some platforms not to use default background.
     //wxImage::AddHandler(new wxPNGHandler); // Format of images to use (usually only one).
     this->SetBackgroundColour(wxColour(50, 50, 50));
     //this->Connect(wxEVT_PAINT, wxPaintEventHandler(ControlBar::test));
@@ -62,9 +62,14 @@ void ControlBar::mSize(const wxSize& size)
 {
     if (size.x >= 0 && size.y >= 0)
     {
-        if (size.x >= MINSIZE.x && size.y >= MINSIZE.y)
+        if (size.x >= MINSIZE.x)
         {
-            this->SetSize(size);
+            SetPosition(wxPoint(0, size.y - 100));
+            SetSize(size.x, MINSIZE.y);
+
+            _DEBUG_ DSTREAM << "Resizing ControlBar: " << size.x << "x, " << size.y << "y." << endl;
+
+            Refresh();
         }   
     }
 }
@@ -82,5 +87,5 @@ void ControlBar::OnPaint(wxPaintEvent& event)
 
 void ControlBar::test(wxPaintEvent& event)
 {
-    this->mSize(wxSize(this->GetParent()->GetSize().x, 0));
+    //this->mSize(wxSize(this->GetParent()->GetSize().x, 0));
 }
