@@ -43,12 +43,11 @@ MainFrame::MainFrame(const axString& title)
 
     testBar = new ControlBar(mainPanel, wxID_ANY, wxPoint(0 , this->GetSize().y - 100), wxSize(this->GetSize().x, 100));
 
-
-
 }
 
 
 void MainFrame::OnSize(wxSizeEvent& event)
 {
-    testBar->mSize(wxSize(this->GetSize().x, this->GetSize().y));
+    //testBar->mSize(wxSize(this->GetSize().x, this->GetSize().y));
+    testBar->mSize(this->GetSize());
 }
