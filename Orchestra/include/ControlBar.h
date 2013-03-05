@@ -29,6 +29,8 @@ public:
 	 * @param size Resize parameters.
 	 ***********************************************************************************/
     void mSize(const wxSize& size);
+    
+    static const wxSize MINSIZE;
 
 private:
 
