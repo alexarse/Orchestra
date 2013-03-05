@@ -27,6 +27,7 @@ public:
 private:
 	
 	wxPanel* mainPanel;
+    ControlBar* testBar;
 
 	/********************************************************************************//**
 	 * @brief  MainFrame is the only Class to use wxSizeEvent and takes care of 
@@ -40,7 +41,7 @@ private:
 	 ***********************************************************************************/
 	_EVENT_ void OnMaximize(wxMaximizeEvent& event);
 
-	//DECLARE_EVENT_TABLE()
+	DECLARE_EVENT_TABLE()
 };
 
 class Orchestra: public wxApp
@@ -51,6 +52,10 @@ private:
     virtual bool OnInit();
 	
 	MainFrame* frame;
+
+    void OnSize(wxSizeEvent& event);
+
+
 };
 
 #endif
