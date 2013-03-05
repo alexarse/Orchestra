@@ -39,7 +39,7 @@ MainFrame::MainFrame(const wxString& title)
 {
 	SetBackgroundColour(axColor(80, 80, 80));
 	mainPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 0), GetSize());
-	mainPanel->SetBackgroundColour(axColor(80, 80, 80));
+	mainPanel->SetBackgroundColour(wxColor(80, 80, 80));
 
     testBar = new ControlBar(mainPanel, wxID_ANY, 
     			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y), 
