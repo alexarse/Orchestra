@@ -16,7 +16,7 @@ IMPLEMENT_APP(Orchestra);
 
 bool Orchestra::OnInit()
 {
-	frame = new MainFrame(axT("Orchestra"));
+	frame = new MainFrame(wxT("Orchestra"));
 	
 	frame->Show();
 	SetTopWindow(frame);
@@ -34,14 +34,16 @@ BEGIN_EVENT_TABLE(MainFrame, wxFrame)
 	//EVT_MAXIMIZE(MainFrame::OnMaximize)
 END_EVENT_TABLE()
 
-MainFrame::MainFrame(const axString& title)
-    : axFrame(NULL, axID_ANY, title, axPoint(30, 30), axSize(500, 500))
+MainFrame::MainFrame(const wxString& title)
+    : wxFrame(NULL, wxID_ANY, title, wxPoint(30, 30), wxSize(500, 500))
 {
 	SetBackgroundColour(axColor(80, 80, 80));
-	mainPanel = new axPanel(this, axID_ANY, axPoint(0, 0), this->GetSize());
+	mainPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 0), GetSize());
 	mainPanel->SetBackgroundColour(axColor(80, 80, 80));
 
-    testBar = new ControlBar(mainPanel, wxID_ANY, wxPoint(0 , this->GetSize().y - 100), wxSize(this->GetSize().x, 100));
+    testBar = new ControlBar(mainPanel, wxID_ANY, 
+    			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y), 
+    			     wxSize(GetSize().x, ControlBar::MINSIZE.y));
 
 }
 
@@ -49,5 +51,5 @@ MainFrame::MainFrame(const axString& title)
 void MainFrame::OnSize(wxSizeEvent& event)
 {
     //testBar->mSize(wxSize(this->GetSize().x, this->GetSize().y));
-    testBar->mSize(this->GetSize());
+    testBar->mSize(GetSize());
 }
