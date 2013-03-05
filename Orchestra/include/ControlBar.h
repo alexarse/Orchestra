@@ -10,8 +10,8 @@
 #include "axLib.h"
 
 // TODO: DELETE
-typedef mImageButton axButton;
-typedef mToggleImage axToggle;
+//typedef mImageButton axButton;
+//typedef mToggleImage axToggle;
 
 class ControlBar : public wxPanel
 {
