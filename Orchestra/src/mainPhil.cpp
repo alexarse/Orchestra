@@ -51,5 +51,7 @@ MainFrame::MainFrame(const wxString& title)
 void MainFrame::OnSize(wxSizeEvent& event)
 {
     //testBar->mSize(wxSize(this->GetSize().x, this->GetSize().y));
+    // Je crois qu'il faut resize le mainPanel aussi avant de resize testBar.
+    mainPanel->SetSize(GetSize());
     testBar->mSize(GetSize());
 }
