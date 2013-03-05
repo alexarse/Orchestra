@@ -11,7 +11,7 @@ enum
 };
 
 BEGIN_EVENT_TABLE(ControlBar, wxPanel)
-	//EVT_PAINT(ControlBar::OnPaint)
+	EVT_PAINT(ControlBar::OnPaint)
 
     //EVT_BUTTON(BACK_BTN, ControlBar::test)
 
@@ -81,6 +81,11 @@ void ControlBar::OnPaint(wxPaintEvent& event)
 {
     wxAutoBufferedPaintDC dc(this);
     //this->mSize(wxSize(this->GetParent()->GetSize().x, 0));
+    wxSize size = GetSize();
+    
+    dc.SetPen(wxPen(wxColor(255, 0, 0), 1, wxSOLID));
+    dc.SetBrush(wxBrush(wxColor(0, 0, 0)));
+    dc.DrawRectangle(wxRect(0, 0, size.x, size.y));
 
     _DEBUG_ DSTREAM << "calice" << endl;
 }
