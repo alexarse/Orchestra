@@ -86,7 +86,7 @@ void ControlBar::OnPaint(wxPaintEvent& event)
     //this->mSize(wxSize(this->GetParent()->GetSize().x, 0));
     wxSize size = GetSize();
     
-    dc.SetPen(wxPen(wxColor(0`, 0, 0), 1, wxSOLID));
+    dc.SetPen(wxPen(wxColor(0, 0, 0), 1, wxSOLID));
     dc.SetBrush(wxBrush(wxColor(250, 0, 0)));
     dc.DrawRectangle(wxRect(0, 0, size.x, size.y));
 
