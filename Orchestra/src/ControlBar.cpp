@@ -1,6 +1,6 @@
 #include "ControlBar.h"
 
-const wxSize MINSIZE = wxSize(300, 100);
+const wxSize ControlBar::MINSIZE = wxSize(300, 100);
 
 enum 
 {
