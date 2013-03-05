@@ -51,12 +51,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AX_LIB)/axLib/include;/include/;../include/;..\Orchestra\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AX_LIB)/axLib/include;/include/;../include/;..\Orchestra\include;..\irrlicht-1.8\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(AX_LIB)/Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>axLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(AX_LIB)/Debug;..\irrlicht-1.8\lib\Win32-visualstudio</AdditionalLibraryDirectories>
+      <AdditionalDependencies>axLib.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
