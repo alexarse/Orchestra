@@ -6,6 +6,10 @@
  ***********************************************************************************/
 #include "mainPhil.h"
 
+
+// TODO: Delete optional testing includes
+#include <Windows.h>
+
 IMPLEMENT_APP(Orchestra);
 
 #define SEL_ONE  SELECT_ONLY_THIS_ID
@@ -27,4 +31,15 @@ MainFrame::MainFrame(const axString& title): axFrame(NULL, axID_ANY, title, axPo
 	mainPanel->SetBackgroundColour(axColor(80, 80, 80));
 
     ControlBar* test = new ControlBar(mainPanel, wxID_ANY, wxPoint(0 , this->GetSize().y - 100), wxSize(this->GetSize().x, 100));
+    //test->mSize(wxSize(500, 5));
+
+
+    //Sleep(2000);
+
+    //test->mSize(wxSize(100, 50));
+
+    //Sleep(2000);
+
+    //test->mSize(wxSize(200, 150));
+
 }

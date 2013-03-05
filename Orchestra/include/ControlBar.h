@@ -4,11 +4,14 @@
  * @brief	Control Bar
  * @date	Creation 06/02/2013
  ***********************************************************************************/
-
 #ifndef _CONTROLBAR_H_
 #define _CONTROLBAR_H_
 
 #include "axLib.h"
+
+// TODO: DELETE
+typedef mImageButton axButton;
+typedef mToggleImage axToggle;
 
 class ControlBar : public wxPanel
 {
@@ -23,14 +26,30 @@ public:
 
 	/********************************************************************************//**
 	 * @brief  Resize the Control Bar (can not override minimum).
-	 * @param size Target resize parameters.
+	 * @param size Resize parameters.
 	 ***********************************************************************************/
-    void mSize(wxSize size);
+    void mSize(const wxSize& size);
 
 private:
 
+    // Interface
+    wxPanel* transportPanel;
+    axButton* backwardBtn;
+    axButton* forwardBtn;
+    axButton* stopBtn;
+    axToggle* playPauseBtn;
+    //axSlider* slider;
+    //axSlider* volumeCtrl;
+    //axTimeCtrl* timeCtrl;
 
-    //DECLARE_EVENT_TABLE()
+    //scoreCtrl* scoreCtrl;
+
+    // Events
+	void OnPaint(wxPaintEvent& event);
+
+    //void test(wxCommandEvent& event);
+    void test(wxPaintEvent& event);
+    DECLARE_EVENT_TABLE()
 };
 
 #endif //_CONTROLBAR_H_
