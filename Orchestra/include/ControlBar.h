@@ -17,7 +17,10 @@ public:
 
 	/********************************************************************************//**
 	 * @brief  Constructor
-	 * @param title Program name
+	 * @param win wxWindow pointer.
+     * @param id
+     * @param pt Position x, y.
+     * @param size Size width, height
 	 ***********************************************************************************/
     ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size);
 
@@ -27,6 +30,7 @@ public:
 	 ***********************************************************************************/
     void mSize(const wxSize& size);
     
+    // Defines
     static const wxSize MINSIZE;
     static const wxPoint BTN_OFFSET;
     static const int BTN_DELTAX;
@@ -34,7 +38,6 @@ public:
 private:
 
     // Interface
-    wxPanel* transportPanel;
     axButton* backwardBtn;
     axButton* forwardBtn;
     axButton* stopBtn;
@@ -46,10 +49,13 @@ private:
     //scoreCtrl* scoreCtrl;
 
     // Events
-	void OnPaint(wxPaintEvent& event);
+    void OnBackBtn(wxCommandEvent& event);
+    void OnStopBtn(wxCommandEvent& event);
+    void OnPlayPauseBtn(wxCommandEvent& event);
+    void OnFwrdBtn(wxCommandEvent& event);
 
-    //void test(wxCommandEvent& event);
-    void test(wxPaintEvent& event);
+    void OnPaint(wxPaintEvent& event);
+
     DECLARE_EVENT_TABLE()
 };
 

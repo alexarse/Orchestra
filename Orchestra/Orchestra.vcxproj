@@ -43,6 +43,16 @@
     <ClInclude Include="include\mainPhil.h" />
     <ClInclude Include="include\mediaPlayer.h" />
     <ClInclude Include="include\partition.h" />
+    <ClCompile Include="src\ControlBar.cpp" />
+    <ClCompile Include="src\mainPhil.cpp" />
+    <ClCompile Include="src\MediaPlayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ControlBar.h" />
+    <ClInclude Include="include\mainPhil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\MediaPlayer.h" />
     <ClInclude Include="include\videoInterface.h" />
     <ClInclude Include="include\vlcVideoPlayer.h" />
   </ItemGroup>

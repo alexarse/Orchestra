@@ -4,22 +4,23 @@ const wxSize ControlBar::MINSIZE = wxSize(300, 100);
 const wxPoint ControlBar::BTN_OFFSET = wxPoint(100, 17);
 const int ControlBar::BTN_DELTAX = 25;
 
+// IDs
 enum 
 {
     BACK_BTN = 8000,
-    FWRD_BTN,
     STOP_BTN,
-    PLAY_BTN
+    PLAY_PAUSE_BTN,
+    FWRD_BTN
 };
 
 BEGIN_EVENT_TABLE(ControlBar, wxPanel)
 	EVT_PAINT(ControlBar::OnPaint)
 
-    //EVT_BUTTON(BACK_BTN, ControlBar::test)
+    EVT_BUTTON(BACK_BTN, ControlBar::OnBackBtn)
+	EVT_BUTTON(STOP_BTN, ControlBar::OnStopBtn)
+	EVT_BUTTON(PLAY_PAUSE_BTN, ControlBar::OnPlayPauseBtn)
+	EVT_BUTTON(FWRD_BTN, ControlBar::OnStopBtn)
 
-	//EVT_BUTTON(ID_RIGHT_BTN, ControlBar::OnBtnNext)
-	//EVT_BUTTON(ID_PLAY_BTN, ControlBar::OnPlayBtn)
-	//EVT_BUTTON(ID_STOP_BTN, ControlBar::OnStopBtn)
 	//EVT_BUTTON(ID_SLIDER_LEFT_UP, ControlBar::OnSliderLeftUp)
 	//EVT_BUTTON(ID_SLIDER_DOWN, ControlBar::OnSliderDown)
 	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
@@ -48,7 +49,7 @@ ControlBar::ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     stopBtn = new axButton(this, STOP_BTN, wxPoint(x += deltaX, y), stopIm); // 25
 
     axMultipleBitmap playPauseIm(wxString("resources/ControlBar/playPauseBtn.png"), 6, img_size);
-    playPauseBtn = new axToggle(this, PLAY_BTN, wxPoint(x += deltaX, y), playPauseIm, false); // 50
+    playPauseBtn = new axToggle(this, PLAY_PAUSE_BTN, wxPoint(x += deltaX, y), playPauseIm, false); // 50
 	//@todo playPauseBtn->setBackgroundImage(wxBitmap(_T("resources/ControlBar/backgroundBtn.png"), wxBITMAP_TYPE_PNG));
 	
     axMultipleBitmap forwardIm(wxString("resources/ControlBar/forwardBtn.png"), 3, img_size);
@@ -86,9 +87,25 @@ void ControlBar::mSize(const wxSize& size)
     }
 }
 
-
-
 // Events
+void ControlBar::OnBackBtn(wxCommandEvent& event)
+{
+    event.Skip();
+    _DEBUG_ DSTREAM << "ControlBar OnBackBtn" << endl;
+}
+void ControlBar::OnStopBtn(wxCommandEvent& event)
+{
+    event.Skip();
+}
+void ControlBar::OnPlayPauseBtn(wxCommandEvent& event)
+{
+    event.Skip();
+}
+void ControlBar::OnFwrdBtn(wxCommandEvent& event)
+{
+    event.Skip();
+}
+
 void ControlBar::OnPaint(wxPaintEvent& event)
 {
     wxAutoBufferedPaintDC dc(this);
@@ -99,9 +116,4 @@ void ControlBar::OnPaint(wxPaintEvent& event)
     dc.SetBrush(wxBrush(wxColor(50, 50, 50)));
     dc.DrawRectangle(wxRect(0, 0, size.x, size.y));
 
-}
-
-void ControlBar::test(wxPaintEvent& event)
-{
-    //this->mSize(wxSize(this->GetParent()->GetSize().x, 0));
 }

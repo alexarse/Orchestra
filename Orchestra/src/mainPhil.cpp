@@ -38,12 +38,14 @@ MainFrame::MainFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title, wxPoint(30, 30), wxSize(500, 500))
 {
 	SetBackgroundColour(axColor(80, 80, 80));
+    this->SetMinSize(wxSize(300, 500));
 	mainPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 0), GetSize());
 	mainPanel->SetBackgroundColour(wxColor(80, 80, 80));
 
-    testBar = new ControlBar(mainPanel, wxID_ANY, 
-    			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y), 
-    			     wxSize(GetSize().x, ControlBar::MINSIZE.y));
+    // Create mediaPlayer
+    mediaPlayer = new MediaPlayer(mainPanel, wxID_ANY, 
+    			     wxPoint(0 , 0), 
+    			     wxSize(GetSize()));
 
 }
 
@@ -53,5 +55,5 @@ void MainFrame::OnSize(wxSizeEvent& event)
     //testBar->mSize(wxSize(this->GetSize().x, this->GetSize().y));
     // Je crois qu'il faut resize le mainPanel aussi avant de resize testBar.
     mainPanel->SetSize(GetSize());
-    testBar->mSize(GetSize());
+    mediaPlayer->mSize(GetSize());
 }

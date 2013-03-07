@@ -8,7 +8,7 @@
 #define _ORCHESTRA_MAIN_H_
 
 #include "axLib.h"
-#include "ControlBar.h"
+#include "MediaPlayer.h"
 
 class MainFrame : public wxFrame
 {
@@ -27,7 +27,8 @@ public:
 private:
 	
 	wxPanel* mainPanel;
-    ControlBar* testBar;
+
+    MediaPlayer* mediaPlayer;
 
 	/********************************************************************************//**
 	 * @brief  MainFrame is the only Class to use wxSizeEvent and takes care of 
