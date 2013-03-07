@@ -16,6 +16,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\main_3DPanel.cpp" />
+    <ClCompile Include="src\main_Media_Player.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\mediaPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -24,7 +27,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="include\main_3DPanel.h" />
+    <ClInclude Include="include\main_Media_Player.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="include\mediaPlayer.h" />
+    <ClInclude Include="include\videoInterface.h" />
+    <ClInclude Include="include\vlcVideoPlayer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CA22CE7A-D627-4281-B358-FEFE12DA4A0F}</ProjectGuid>
