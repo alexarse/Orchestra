@@ -46,15 +46,16 @@
     <ClCompile Include="src\ControlBar.cpp" />
     <ClCompile Include="src\mainPhil.cpp" />
     <ClCompile Include="src\MediaPlayer.cpp" />
+    <ClCompile Include="src\VlcVideoPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ControlBar.h" />
     <ClInclude Include="include\mainPhil.h" />
+    <ClInclude Include="include\VideoInterface.h" />
+    <ClInclude Include="include\VlcVideoPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\MediaPlayer.h" />
-    <ClInclude Include="include\videoInterface.h" />
-    <ClInclude Include="include\vlcVideoPlayer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CA22CE7A-D627-4281-B358-FEFE12DA4A0F}</ProjectGuid>
@@ -87,12 +88,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AX_LIB)/axLib/include;/include/;../include/;..\Orchestra\include;..\irrlicht-1.8\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AX_LIB)/axLib/include;/include/;../include/;..\Orchestra\include;..\irrlicht-1.8\include;..\vlc-2.0.4\sdk\include\vlc;..\vlc-2.0.4\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(AX_LIB)/Debug;..\irrlicht-1.8\lib\Win32-visualstudio</AdditionalLibraryDirectories>
-      <AdditionalDependencies>axLib.lib;Irrlicht.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(AX_LIB)/Debug;..\irrlicht-1.8\lib\Win32-visualstudio;..\vlc-2.0.4\sdk\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>axLib.lib;Irrlicht.lib;opengl32.lib;libvlc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

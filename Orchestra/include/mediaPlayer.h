@@ -3,6 +3,8 @@
 
 #include "axLib.h"
 #include "ControlBar.h"
+#include "VideoInterface.h"
+#include "VlcVideoPlayer.h"
 
 class MediaPlayer : public wxPanel
 {
@@ -17,6 +19,13 @@ public:
     MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size);
 
 	/********************************************************************************//**
+	 * @brief  Load 3d media files and video files. Calls respective functions inside classes. Returns false if it fails.
+	 * @param Data3d 3D data, WE DONT KNOW YET WHAT!!!
+     * @param videoPath Cleaned-up path to video for loading.
+	 ***********************************************************************************/
+    bool loadMedia(const char* videoPath); // @todo Implement loading 3d data!
+
+	/********************************************************************************//**
 	 * @brief  Resize the Media Player (can not override minimum).
 	 * @param size Resize parameters.
 	 ***********************************************************************************/
@@ -26,6 +35,7 @@ public:
     static const wxSize MINSIZE;
 
 private:
+    VideoInterface* videoInterface;
     ControlBar* controlBar;
 
     // Interface

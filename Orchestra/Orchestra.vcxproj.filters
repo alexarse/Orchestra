@@ -28,6 +28,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main_Partition.cpp">
+    <ClCompile Include="src\VlcVideoPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,13 +39,13 @@
     <ClInclude Include="include\ControlBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\videoInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vlcVideoPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\MediaPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VideoInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VlcVideoPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\partition.h">

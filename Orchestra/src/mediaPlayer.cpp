@@ -11,6 +11,7 @@ enum
     FWRD_BTN
 };
 
+// Events
 BEGIN_EVENT_TABLE(MediaPlayer, wxPanel)
 	//EVT_PAINT(MediaPlayer::OnPaint)
 
@@ -25,15 +26,21 @@ BEGIN_EVENT_TABLE(MediaPlayer, wxPanel)
 	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
 END_EVENT_TABLE()
 
-
 MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     : wxPanel(win, id, pt, size)
 {
 	this->SetBackgroundColour(axColor(80, 80, 80));
 
+    videoInterface = new VlcVideoPlayer(this, wxID_ANY, wxPoint(0, 0), wxSize(GetSize().x, GetSize().y - ControlBar::MINSIZE.y));
+
     controlBar = new ControlBar(this, wxID_ANY, 
     			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y), 
     			     wxSize(GetSize().x, ControlBar::MINSIZE.y));
+}
+
+bool MediaPlayer::loadMedia(const char* videoPath)
+{
+    return videoInterface->loadVideo(videoPath);
 }
 
 void MediaPlayer::mSize(const wxSize& size)
@@ -70,11 +77,11 @@ void MediaPlayer::OnBackBtn(wxCommandEvent& event)
 }
 void MediaPlayer::OnStopBtn(wxCommandEvent& event)
 {
-
+    videoInterface->stop();
 }
 void MediaPlayer::OnPlayPauseBtn(wxCommandEvent& event)
 {
-
+    videoInterface->play();
 }
 void MediaPlayer::OnFwrdBtn(wxCommandEvent& event)
 {

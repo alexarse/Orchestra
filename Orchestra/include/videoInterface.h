@@ -1,5 +1,5 @@
-#ifndef _ORCHESTRA_MAIN_H_
-#define _ORCHESTRA_MAIN_H_
+#ifndef _VIDEOINTERFACE_H_
+#define _VIDEOINTERFACE_H_
 
 #include "axLib.h"
 
@@ -11,7 +11,7 @@ public:
 	virtual void setVolume(double volume)	 = 0;
 	virtual void play()						 = 0;
 	virtual void stop()						 = 0;
-	virtual void loadVideo(const char* path) = 0;
+	virtual bool loadVideo(const char* path) = 0;
 };
 
-#endif
+#endif // _VIDEOINTERFACE_H_
