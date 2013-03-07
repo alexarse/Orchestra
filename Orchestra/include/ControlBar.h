@@ -9,9 +9,6 @@
 
 #include "axLib.h"
 
-// TODO: DELETE
-//typedef mImageButton axButton;
-//typedef mToggleImage axToggle;
 
 class ControlBar : public wxPanel
 {
@@ -31,6 +28,8 @@ public:
     void mSize(const wxSize& size);
     
     static const wxSize MINSIZE;
+    static const wxPoint BTN_OFFSET;
+    static const int BTN_DELTAX;
 
 private:
 

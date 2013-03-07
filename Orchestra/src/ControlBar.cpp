@@ -1,6 +1,8 @@
 #include "ControlBar.h"
 
 const wxSize ControlBar::MINSIZE = wxSize(300, 100);
+const wxPoint ControlBar::BTN_OFFSET = wxPoint(100, 17);
+const int ControlBar::BTN_DELTAX = 25;
 
 enum 
 {
@@ -28,36 +30,29 @@ ControlBar::ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     : wxPanel(win, id, pt, size)
 {
     // Heavy lifting
-    //this->SetBackgroundStyle(wxBG_STYLE_CUSTOM); // Tell some platforms not to use default background.
+    this->SetBackgroundStyle(wxBG_STYLE_CUSTOM); // Tell some platforms not to use default background.
     //wxImage::AddHandler(new wxPNGHandler); // Format of images to use (usually only one).
     this->SetBackgroundColour(wxColour(50, 50, 50));
-    //this->Connect(wxEVT_PAINT, wxPaintEventHandler(ControlBar::test));
-    //this->SetMinSize(wxSize(300,100)); // For sizers
 
-    // Container pour boutons central
-    //transportPanel = new wxPanel(this, wxID_ANY, wxPoint(50, 17), wxSize(100, 25));
-	//transportPanel->SetBackgroundStyle(wxBG_STYLE_CUSTOM);
-	//transportPanel->Connect(wxEVT_PAINT, wxPaintEventHandler(ControlBar::OnTransportPanelPaint));
 
     // Initialize buttons
-    int x = 0, delta = 25;
-    wxSize img_size(25, 25);
+    int x = BTN_OFFSET.x, deltaX = BTN_DELTAX, y = BTN_OFFSET.y; // Offset pour controls
+    wxSize img_size(25, 25); // Size of button images
+    
     
     axMultipleBitmap backwardIm(wxString("resources/ControlBar/backwardBtn.png"), 3, img_size);
-    backwardBtn = new axButton(this, BACK_BTN, wxPoint(x++ * delta ,0), backwardIm); // 0
-	//backwardBtn->setBackgroundImage(wxBitmap(_T("resources/ControlBar/backgroundBtn.png"), wxBITMAP_TYPE_PNG));
+    backwardBtn = new axButton(this, BACK_BTN, wxPoint(x, y), backwardIm); // 0
+
 
     axMultipleBitmap stopIm(wxString("resources/ControlBar/stopBtn.png"), 3, img_size);
-    stopBtn = new axButton(this, STOP_BTN, wxPoint(x++ * delta, 0), stopIm); // 25
-	//stopBtn->setBackgroundImage(wxBitmap(_T("resources/ControlBar/backgroundBtn.png"), wxBITMAP_TYPE_PNG));
+    stopBtn = new axButton(this, STOP_BTN, wxPoint(x += deltaX, y), stopIm); // 25
 
     axMultipleBitmap playPauseIm(wxString("resources/ControlBar/playPauseBtn.png"), 6, img_size);
-    playPauseBtn = new axToggle(this, PLAY_BTN, wxPoint(x++ * delta, 0), playPauseIm, false); // 50
-	//playPauseBtn->setBackgroundImage(wxBitmap(_T("resources/ControlBar/backgroundBtn.png"), wxBITMAP_TYPE_PNG));
+    playPauseBtn = new axToggle(this, PLAY_BTN, wxPoint(x += deltaX, y), playPauseIm, false); // 50
+	//@todo playPauseBtn->setBackgroundImage(wxBitmap(_T("resources/ControlBar/backgroundBtn.png"), wxBITMAP_TYPE_PNG));
 	
     axMultipleBitmap forwardIm(wxString("resources/ControlBar/forwardBtn.png"), 3, img_size);
-    forwardBtn = new axButton(this, FWRD_BTN, wxPoint(x++ * delta, 0), forwardIm); // 75
-	//forwardBtn->setBackgroundImage(wxBitmap(_T("resources/ControlBar/backgroundBtn.png"), wxBITMAP_TYPE_PNG));
+    forwardBtn = new axButton(this, FWRD_BTN, wxPoint(x += deltaX, y), forwardIm); // 75
 
 }
 
@@ -67,13 +62,27 @@ void ControlBar::mSize(const wxSize& size)
     {
         if (size.x >= MINSIZE.x)
         {
+            // Resize panel
             SetPosition(wxPoint(0, size.y - MINSIZE.y));
             SetSize(size.x, MINSIZE.y);
 
-            _DEBUG_ DSTREAM << "Resizing ControlBar: " << size.x << "x, " << size.y << "y." << endl;
+            // Move controls relative to resize
+            int x = ((this->GetSize().x - MINSIZE.x)/2) + BTN_OFFSET.x, y = BTN_OFFSET.y, deltaX = BTN_DELTAX;
+            this->backwardBtn->SetPosition(wxPoint(x, y));
+            this->stopBtn->SetPosition(wxPoint(x += deltaX, y));
+            this->playPauseBtn->SetPosition(wxPoint(x += deltaX, y));
+            this->forwardBtn->SetPosition(wxPoint(x += deltaX, y));
 
             Refresh();
-        }   
+
+            _DEBUG_ DSTREAM << "Resizing ControlBar: " << size.x << "x, " << size.y << "y." << endl;
+        }
+        else
+        {
+            SetPosition(wxPoint(0, size.y - MINSIZE.y));
+            SetSize(MINSIZE);
+            Refresh();
+        }
     }
 }
 
@@ -87,10 +96,9 @@ void ControlBar::OnPaint(wxPaintEvent& event)
     wxSize size = GetSize();
     
     dc.SetPen(wxPen(wxColor(0, 0, 0), 1, wxSOLID));
-    dc.SetBrush(wxBrush(wxColor(250, 0, 0)));
+    dc.SetBrush(wxBrush(wxColor(50, 50, 50)));
     dc.DrawRectangle(wxRect(0, 0, size.x, size.y));
 
-    _DEBUG_ DSTREAM << "calice" << endl;
 }
 
 void ControlBar::test(wxPaintEvent& event)
