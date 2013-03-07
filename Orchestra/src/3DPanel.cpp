@@ -11,13 +11,15 @@ END_EVENT_TABLE()
 
 
 Device3D::Device3D(wxWindow* win, irr_DriverType type, bool bResizeable)
-		   : wxWindow(win, wxID_ANY, wxPoint(0, 0), wxSize(300, 300))
+		   : wxWindow(win, wxID_ANY, wxPoint(0, 0), wxSize(500, 500))
 {
 	irr_CreateParam param;
 	
 	//Window Only
 	param.WindowId = reinterpret_cast<void *> ((HWND) this->GetHandle());
 	param.DriverType = type;
+	param.Doublebuffer = true;
+	param.WindowSize = irr_Dimension2D(500, 500);
 
 	irrDevice = irr::createDeviceEx(param);
 
@@ -57,8 +59,7 @@ Device3D::Device3D(wxWindow* win, irr_DriverType type, bool bResizeable)
 		//Compute(hand_, (irr_Bone*) upper_arm_L->getParent(), hand_->getPosition());
 		hips_->setRotation(irr_Vector3D(0, 0, 0));
 		upper_arm_L->setRotation(upper_arm_L->getRotation() + irr_Vector3D(20, 20, 40));
-		hand_->setRotation(hand_->getRotation() + irr_Vector3D(-5, -10, -10));
-		
+		//hand_->setRotation(hand_->getRotation() + irr_Vector3D(-5, -10, -10));
 	}
 
 	////window->SetDevice(this);
@@ -93,27 +94,40 @@ void Device3D::OnMouseLeftUp(wxMouseEvent& event)
 }
 void Device3D::OnMouseMotion(wxMouseEvent& event)
 {
-	int x = event.GetX();
+	int x = event.GetX() - clickPt.x;
+	int y = event.GetY() - clickPt.y;
 
 	if(event.Dragging() && HasCapture() && event.LeftIsDown())
 	{
-		_DEBUG_ DSTREAM << "MOTION" << endl;
-		theta += (x - clickPts_x) * -0.0002;
+		irr_Vector3D rot = upper_arm_L->getRotation() + irr_Vector3D(x, y, 0);
 
-		if(theta > 2.0 * M_PI)	theta -= (2.0 * M_PI);
-		if(theta < -2.0 * M_PI)	theta += (2.0 * M_PI);
-		
-		// NE FONCTIONNE PAS (PROBABLEMENT A CAUSE DU : node->setRotation(irr_Vector3D(180, 180, 0)); 
-		// DANS LE CONSTRUCTEUR
-		camera_->setPosition(irr_Vector3D(cos(theta) * 1.8, 1.2f, sin(theta) * 1.8));
-		_DEBUG_ DSTREAM << "LEFT : " << cos(theta) * 1.8 << " , Right : " << sin(theta) * 1.8 << endl;
+		if(rot.X < 280)	rot.X = 280;
+		if(rot.X > 405)	rot.X = 405;
+
+		if(rot.Y < -30)	rot.Y = -30;
+		if(rot.Y > 66)	rot.Y = 66;
+
+		upper_arm_L->setRotation(rot);
+
+		_DEBUG_ DSTREAM << "VECTOR : " << rot.X << ", " << rot.Y << ", " << rot.Z << endl;
+
+		//_DEBUG_ DSTREAM << "MOTION" << endl;
+		//theta += (x - clickPts_x) * -0.0002;
+
+		//if(theta > 2.0 * M_PI)	theta -= (2.0 * M_PI);
+		//if(theta < -2.0 * M_PI)	theta += (2.0 * M_PI);
+		//
+		//// NE FONCTIONNE PAS (PROBABLEMENT A CAUSE DU : node->setRotation(irr_Vector3D(180, 180, 0)); 
+		//// DANS LE CONSTRUCTEUR
+		//camera_->setPosition(irr_Vector3D(cos(theta) * 1.8, 1.2f, sin(theta) * 1.8));
+		//_DEBUG_ DSTREAM << "LEFT : " << cos(theta) * 1.8 << " , Right : " << sin(theta) * 1.8 << endl;
 
 		Refresh();
 	}
 }
 void Device3D::OnMouseLeftDown(wxMouseEvent& event)
 {	
-	clickPts_x = event.GetX();
+	clickPt = event.GetPosition();
 	_DEBUG_ DSTREAM << "LEFT DOWN" << endl;
 	CaptureMouse();
 }
@@ -129,17 +143,14 @@ void Device3D::OnPaint(wxPaintEvent &event)
 		irr_VideoDriver* driver = irrDevice->getVideoDriver();
 		irr_SceneManager* scenemgr = irrDevice->getSceneManager();
 
-		
 		//forearm_L->setRotation(forearm_L->getRotation() + irr_Vector3D(0, 0, 0));
 		//hand_->setRotation(hand_->getRotation() + irr_Vector3D(0, 0, 0));
 		//upper_arm_L->updateAbsolutePosition();
 		//upper_arm_L->updateAbsolutePositionOfAllChildren();
 
-		_DEBUG_ DSTREAM << "UPPER   (Parent) : " << upper_arm_L->getParent()->getName() << endl;
-		_DEBUG_ DSTREAM << "FOREARM (Parent) : " << forearm_L->getParent()->getName() << endl;
-		_DEBUG_ DSTREAM << "HAND    (Parent) : " << hand_->getParent()->getName() << endl;
-
-
+		//_DEBUG_ DSTREAM << "UPPER   (Parent) : " << upper_arm_L->getParent()->getName() << endl;
+		//_DEBUG_ DSTREAM << "FOREARM (Parent) : " << forearm_L->getParent()->getName() << endl;
+		//_DEBUG_ DSTREAM << "HAND    (Parent) : " << hand_->getParent()->getName() << endl;
 
 		if(driver)
 		{

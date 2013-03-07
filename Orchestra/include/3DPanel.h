@@ -48,7 +48,7 @@ protected:
 	bool Compute(irr_Bone* boneNode, irr_Bone* rootBoneNode, irr_Vector3D target);
 
 	double theta;
-	int clickPts_x;
+	wxPoint clickPt;
 
 	void OnPaint(wxPaintEvent &event);
 	void OnMouseLeftDown(wxMouseEvent& event);
