@@ -15,22 +15,30 @@
     <ClCompile Include="src\main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\main_3DPanel.cpp" />
+    <ClCompile Include="src\main_3DPanel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\main_Media_Player.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\main_Partition.cpp" />
     <ClCompile Include="src\mediaPlayer.cpp" />
+    <ClCompile Include="src\partition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\3DPanel.h" />
     <ClInclude Include="include\main.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="include\main_3DPanel.h" />
+    <ClInclude Include="include\main_3DPanel.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="include\main_Media_Player.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="include\main_Partition.h" />
     <ClInclude Include="include\mediaPlayer.h" />
+    <ClInclude Include="include\partition.h" />
     <ClInclude Include="include\videoInterface.h" />
     <ClInclude Include="include\vlcVideoPlayer.h" />
   </ItemGroup>
