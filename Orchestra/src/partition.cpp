@@ -1,3 +1,9 @@
+/********************************************************************************//**
+ * @file	partition.cpp
+ * @author	Alexandre Arsenault <alexandre.arsenault@polymtl.ca>
+ * @brief	class Partition
+ * @date	Creation 07/03/2013
+ ***********************************************************************************/
 #include "partition.h"
 
 #include <fstream>
@@ -138,19 +144,6 @@ bool Partition::changeTime(double timeMs)
 
 	return false;
 }
-void Partition::processMarkerBitmap(int idNum)
-{
-	//wxImage img(markerData[idNum].size.x, markerData[idNum].size.y);
-	//img.InitAlpha();
-	//
-	//for(int i = 0; i < markerData[idNum].size.x; i++)
-	//	for(int j = 0; j < markerData[idNum].size.y; j++)
-	//		img.SetAlpha(i, j, 110);
-	//		
-	//img.SetRGB(wxRect(0, 0, markerData[idNum].size.x, markerData[idNum].size.y), 255, 0, 0);
-	//img.Rescale(img.GetWidth() * x_ratio, img.GetHeight() * y_ratio, wxIMAGE_QUALITY_HIGH); //wxIMAGE_QUALITY_NORMAL);
-	//markerBitmap = wxBitmap(img, 32);
-}
 void Partition::createSelectedMarkerImage()
 {
 	t_size size = markerData[selectedMarker].size;
@@ -166,13 +159,13 @@ void Partition::createSelectedMarkerImage()
 			img.SetAlpha(i, j, 110);
 			
 	img.SetRGB(wxRect(0, 0, x, y), 180, 180, 180);
-	//fullSelectedBitmap = wxBitmap(img, 32);
 	currentMarkerImg = img;
 }
 void Partition::mSize(wxSize size)
 {
 	this->SetSize(size);
 
+	// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
 	currentImg = wxImage(imgList[markerData[selectedMarker].numImg]);
 
 	resizeRatio_x = double(size.x) / currentImg.GetWidth();
@@ -182,7 +175,6 @@ void Partition::mSize(wxSize size)
 						currentImg.GetHeight() * resizeRatio_y, 
 						wxIMAGE_QUALITY_HIGH);
 
-	// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
 	createSelectedMarkerImage();
 	Refresh();
 }
