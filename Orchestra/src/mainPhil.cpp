@@ -47,8 +47,8 @@ MainFrame::MainFrame(const wxString& title)
     			     wxPoint(0 , 0), 
     			     wxSize(GetSize()));
 
-    char* path = "resources/test.mp4";
-    mediaPlayer->loadMedia(path);
+    //char* path = "resources/test.mp4";
+    //mediaPlayer->loadMedia(path);
 
 }
 

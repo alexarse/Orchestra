@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\mainPhil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ControlBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -27,29 +24,20 @@
     <ClCompile Include="src\partition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\main_Partition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\3DPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\main_3DPanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main_Media_Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\VlcVideoPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menuPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\mainPhil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ControlBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -65,19 +53,13 @@
     <ClInclude Include="include\partition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\main_Partition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\3DPanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\main_3DPanel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\main_Media_Player.h">
+    <ClInclude Include="include\menuPanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

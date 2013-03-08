@@ -13,43 +13,21 @@
   <ItemGroup>
     <ClCompile Include="src\3DPanel.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\main_3DPanel.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\main_Media_Player.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\main_Partition.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="src\ControlBar.cpp" />
-    <ClCompile Include="src\mainPhil.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="src\mediaPlayer.cpp" />
+    <ClCompile Include="src\menuPanel.cpp" />
     <ClCompile Include="src\partition.cpp" />
     <ClCompile Include="src\VlcVideoPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\3DPanel.h" />
     <ClInclude Include="include\main.h" />
-    <ClInclude Include="include\main_3DPanel.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="include\main_Media_Player.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="include\main_Partition.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="include\mediaPlayer.h" />
+    <ClInclude Include="include\menuPanel.h" />
     <ClInclude Include="include\partition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ControlBar.h" />
-    <ClInclude Include="include\mainPhil.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="include\VideoInterface.h" />
     <ClInclude Include="include\VlcVideoPlayer.h" />
   </ItemGroup>

@@ -13,8 +13,9 @@ VlcVideoPlayer::VlcVideoPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize 
 
 VlcVideoPlayer::~VlcVideoPlayer()
 {
-    libvlc_media_player_release(vlcPlayer);
-    libvlc_release(vlcInstance); // Destroy VLC instance
+	// @todo ERROR WHEN CLOSING IF NO VIDEO IS LOADED.
+    //libvlc_media_player_release(vlcPlayer);
+    //libvlc_release(vlcInstance); // Destroy VLC instance
 }
 
 long VlcVideoPlayer::getTimeMs()
@@ -44,11 +45,13 @@ void VlcVideoPlayer::play()
 
     //_DEBUG_ DSTREAM << "VlcVideoPlayer Play(vlcPlayer, " << pause_ <<") was called." << endl; 
 }
+
 void VlcVideoPlayer::stop()
 {
     libvlc_media_player_stop(vlcPlayer);
     _DEBUG_ DSTREAM << "VlcVideoPlayer Stop() was called." << endl; 
 }
+
 bool VlcVideoPlayer::loadVideo(const char* path)
 {
 	if(vlcMedia = libvlc_media_new_path(vlcInstance, path))

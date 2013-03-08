@@ -68,7 +68,10 @@ void ControlBar::mSize(const wxSize& size)
             SetSize(size.x, MINSIZE.y);
 
             // Move controls relative to resize
-            int x = ((this->GetSize().x - MINSIZE.x)/2) + BTN_OFFSET.x, y = BTN_OFFSET.y, deltaX = BTN_DELTAX;
+            int x = ((this->GetSize().x - MINSIZE.x) * 0.5) + BTN_OFFSET.x, 
+				y = BTN_OFFSET.y, 
+				deltaX = BTN_DELTAX;
+
             this->backwardBtn->SetPosition(wxPoint(x, y));
             this->stopBtn->SetPosition(wxPoint(x += deltaX, y));
             this->playPauseBtn->SetPosition(wxPoint(x += deltaX, y));

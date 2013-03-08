@@ -28,6 +28,7 @@ Partition::Partition(wxWindow* win, wxWindowID id, const wxPoint& pt, const wxSi
 
 	selectedMarker = 0;
 	nbMarker = 0;
+	markerData = NULL;
 } 
 
 bool Partition::loadInfo(const wxString& data_path, const vector<wxString>& list)
@@ -164,19 +165,22 @@ void Partition::createSelectedMarkerImage()
 void Partition::mSize(wxSize size)
 {
 	this->SetSize(size);
+	if(markerData)
+	{
+		_DEBUG_ DSTREAM << "RESIZE Partition" << endl;
+		// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
+		currentImg = wxImage(imgList[markerData[selectedMarker].numImg]);
 
-	// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
-	currentImg = wxImage(imgList[markerData[selectedMarker].numImg]);
+		resizeRatio_x = double(size.x) / currentImg.GetWidth();
+		resizeRatio_y = double(size.y) / currentImg.GetHeight();
 
-	resizeRatio_x = double(size.x) / currentImg.GetWidth();
-	resizeRatio_y = double(size.y) / currentImg.GetHeight();
+		currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
+							currentImg.GetHeight() * resizeRatio_y, 
+							wxIMAGE_QUALITY_HIGH);
 
-	currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
-						currentImg.GetHeight() * resizeRatio_y, 
-						wxIMAGE_QUALITY_HIGH);
-
-	createSelectedMarkerImage();
-	Refresh();
+		createSelectedMarkerImage();
+		Refresh();
+	}
 }
 void Partition::OnMouseLeftDown(wxMouseEvent& event)
 {
@@ -217,6 +221,10 @@ void Partition::OnPaint(wxPaintEvent& event)
 {
     wxAutoBufferedPaintDC dc(this);
 	wxSize size = this->GetSize();
+
+	dc.SetPen(wxPen(wxColor(80, 80, 80), 1, wxSOLID));
+    dc.SetBrush(wxBrush(wxColor(80, 80, 80)));
+    dc.DrawRectangle(wxRect(0, 0, size.x, size.y));
 
 	if(currentImg.IsOk())
 	{

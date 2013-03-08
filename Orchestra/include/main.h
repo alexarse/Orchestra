@@ -8,6 +8,11 @@
 #define _ORCHESTRA_MAIN_H_
 
 #include "axLib.h"
+#include "mediaPlayer.h"
+#include "partition.h"
+#include "menuPanel.h"
+
+#define MAIN_FRAME_MENU_EVENT (7000)
 
 class MainFrame : public wxFrame
 {
@@ -26,20 +31,25 @@ public:
 private:
 	
 	wxPanel* mainPanel;
+	MenuPanel* menuPanel;
+	MediaPlayer* mediaPlayer;
+	Partition* partition;
+
+	void CreateMenu();
 
 	/********************************************************************************//**
 	 * @brief  MainFrame is the only Class to use wxSizeEvent and takes care of 
-	 *		   resizing his child panels
+	 *		   resizing his child panels.
 	 ***********************************************************************************/
 	_EVENT_ void OnSize(wxSizeEvent& event);
 
 	/********************************************************************************//**
-	 * @brief  MainFrame is the only Class to use wxMwximizeEvent and takes care of 
-	 *		   resizing his child panels
+	 * @brief  MainFrame is the only Class to use wxMaximizeEvent and takes care of 
+	 *		   resizing his child panels.
 	 ***********************************************************************************/
 	_EVENT_ void OnMaximize(wxMaximizeEvent& event);
 
-	//DECLARE_EVENT_TABLE()
+	DECLARE_EVENT_TABLE()
 };
 
 class Orchestra: public wxApp
