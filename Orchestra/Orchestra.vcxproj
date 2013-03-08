@@ -39,23 +39,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="include\main_Partition.h" />
-    <ClInclude Include="include\ControlBar.h" />
-    <ClInclude Include="include\mainPhil.h" />
     <ClInclude Include="include\mediaPlayer.h" />
     <ClInclude Include="include\partition.h" />
-    <ClCompile Include="src\ControlBar.cpp" />
-    <ClCompile Include="src\mainPhil.cpp" />
-    <ClCompile Include="src\MediaPlayer.cpp" />
-    <ClCompile Include="src\VlcVideoPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ControlBar.h" />
     <ClInclude Include="include\mainPhil.h" />
     <ClInclude Include="include\VideoInterface.h" />
     <ClInclude Include="include\VlcVideoPlayer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\MediaPlayer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CA22CE7A-D627-4281-B358-FEFE12DA4A0F}</ProjectGuid>
