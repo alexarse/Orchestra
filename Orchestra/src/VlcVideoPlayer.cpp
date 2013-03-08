@@ -30,11 +30,20 @@ void VlcVideoPlayer::setVolume(double volume)
 {
 
 }
-void VlcVideoPlayer::play()
+
+void VlcVideoPlayer::backward()
 {
-    // @todo Fix and use libvlc_media_player_set_pause(vlcPlayer, pause_);
-    // It's more elegant and we can combine it with libvlc_media_player_is_playing(vlcPlayer) (returns 0 or 1).
-    
+    // @todo Fix audio click
+    libvlc_media_player_set_position(vlcPlayer, libvlc_media_player_get_position (vlcPlayer) - 0.1); // Backward 10%
+}
+void VlcVideoPlayer::stop()
+{
+    libvlc_media_player_stop(vlcPlayer);
+    firstPlay_ = 1;
+    _DEBUG_ DSTREAM << "VlcVideoPlayer Stop() was called." << endl;
+}
+void VlcVideoPlayer::playPause()
+{
     if (firstPlay_)
     {
         libvlc_media_player_play(vlcPlayer);
@@ -42,15 +51,11 @@ void VlcVideoPlayer::play()
     }
 
     libvlc_media_player_set_pause(vlcPlayer, libvlc_media_player_is_playing(vlcPlayer));
-
-    //_DEBUG_ DSTREAM << "VlcVideoPlayer Play(vlcPlayer, " << pause_ <<") was called." << endl; 
 }
-
-void VlcVideoPlayer::stop()
+void VlcVideoPlayer::forward()
 {
-    libvlc_media_player_stop(vlcPlayer);
-    firstPlay_ = 1;
-    _DEBUG_ DSTREAM << "VlcVideoPlayer Stop() was called." << endl; 
+    // @todo Fix audio click
+    libvlc_media_player_set_position(vlcPlayer, libvlc_media_player_get_position (vlcPlayer) + 0.1); // Forward 10%
 }
 
 bool VlcVideoPlayer::loadVideo(const char* path)
@@ -67,14 +72,14 @@ bool VlcVideoPlayer::loadVideo(const char* path)
 			//libvlc_video_set_format(vlcPlayer)
             _DEBUG_ DSTREAM << "Loaded video file." << endl;
 
-        } 
-        else 
+        }
+        else
         {
             return false;
             _DEBUG_ DSTREAM << "Can't create player from vlcMedia" << endl;
         }
-    } 
-    else 
+    }
+    else
     {
         return false;
         _DEBUG_ DSTREAM << "Can't media from path" << endl;

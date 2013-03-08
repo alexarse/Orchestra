@@ -22,8 +22,10 @@ public:
 	virtual long getTimeMs();
 	virtual long getTotalTimeMs();
 	virtual void setVolume(double volume);
-	virtual void play();
+    virtual void backward();
 	virtual void stop();
+	virtual void playPause();
+    virtual void forward();
 	virtual bool loadVideo(const char* path);
 private:
 

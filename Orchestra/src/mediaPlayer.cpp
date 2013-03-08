@@ -18,7 +18,7 @@ BEGIN_EVENT_TABLE(MediaPlayer, wxPanel)
     EVT_BUTTON(BACK_BTN, MediaPlayer::OnBackBtn)
 	EVT_BUTTON(STOP_BTN, MediaPlayer::OnStopBtn)
 	EVT_BUTTON(PLAY_PAUSE_BTN, MediaPlayer::OnPlayPauseBtn)
-	EVT_BUTTON(FWRD_BTN, MediaPlayer::OnStopBtn)
+	EVT_BUTTON(FWRD_BTN, MediaPlayer::OnFwrdBtn)
 
 	//EVT_BUTTON(ID_SLIDER_LEFT_UP, ControlBar::OnSliderLeftUp)
 	//EVT_BUTTON(ID_SLIDER_DOWN, ControlBar::OnSliderDown)
@@ -73,6 +73,7 @@ void MediaPlayer::mSize(const wxSize& size)
 // Events
 void MediaPlayer::OnBackBtn(wxCommandEvent& event)
 {
+    videoInterface->backward();
     _DEBUG_ DSTREAM << "MediaPlayer OnBackBtn" << endl;
 }
 void MediaPlayer::OnStopBtn(wxCommandEvent& event)
@@ -81,9 +82,10 @@ void MediaPlayer::OnStopBtn(wxCommandEvent& event)
 }
 void MediaPlayer::OnPlayPauseBtn(wxCommandEvent& event)
 {
-    videoInterface->play();
+    videoInterface->playPause();
 }
 void MediaPlayer::OnFwrdBtn(wxCommandEvent& event)
 {
+    videoInterface->forward();
     _DEBUG_ DSTREAM << "MediaPlayer OnFwrdBtn" << endl;
 }
