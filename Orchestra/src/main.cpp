@@ -8,8 +8,6 @@
 
 IMPLEMENT_APP(Orchestra);
 
-#define SEL_ONE  SELECT_ONLY_THIS_ID
-
 bool Orchestra::OnInit()
 {
 	frame = new MainFrame(axT("Orchestra"));

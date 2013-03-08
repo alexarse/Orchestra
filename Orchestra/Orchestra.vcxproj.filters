@@ -28,7 +28,19 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main_Partition.cpp">
-       <Filter>Source Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main_3DPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main_Media_Player.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\VlcVideoPlayer.cpp">
       <Filter>Source Files</Filter>
@@ -54,6 +66,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\main_Partition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\3DPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\main_3DPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\main_Media_Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

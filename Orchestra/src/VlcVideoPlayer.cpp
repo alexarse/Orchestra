@@ -42,7 +42,7 @@ void VlcVideoPlayer::play()
 
     libvlc_media_player_set_pause(vlcPlayer, libvlc_media_player_is_playing(vlcPlayer));
 
-    _DEBUG_ DSTREAM << "VlcVideoPlayer Play(vlcPlayer, " << pause_ <<") was called." << endl; 
+    //_DEBUG_ DSTREAM << "VlcVideoPlayer Play(vlcPlayer, " << pause_ <<") was called." << endl; 
 }
 void VlcVideoPlayer::stop()
 {
