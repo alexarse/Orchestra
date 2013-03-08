@@ -42,18 +42,17 @@ ControlBar::ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     
     
     axMultipleBitmap backwardIm(wxString("resources/ControlBar/backwardBtn.png"), 3, img_size);
-    backwardBtn = new axButton(this, BACK_BTN, wxPoint(x, y), backwardIm); // 0
+    backwardBtn = new axButton(this, BACK_BTN, wxPoint(x, y), backwardIm);
 
 
     axMultipleBitmap stopIm(wxString("resources/ControlBar/stopBtn.png"), 3, img_size);
-    stopBtn = new axButton(this, STOP_BTN, wxPoint(x += deltaX, y), stopIm); // 25
+    stopBtn = new axButton(this, STOP_BTN, wxPoint(x += deltaX, y), stopIm);
 
     axMultipleBitmap playPauseIm(wxString("resources/ControlBar/playPauseBtn.png"), 6, img_size);
-    playPauseBtn = new axToggle(this, PLAY_PAUSE_BTN, wxPoint(x += deltaX, y), playPauseIm, false); // 50
-	//@todo playPauseBtn->setBackgroundImage(wxBitmap(_T("resources/ControlBar/backgroundBtn.png"), wxBITMAP_TYPE_PNG));
+    playPauseBtn = new axToggle(this, PLAY_PAUSE_BTN, wxPoint(x += deltaX, y), playPauseIm, false);
 	
     axMultipleBitmap forwardIm(wxString("resources/ControlBar/forwardBtn.png"), 3, img_size);
-    forwardBtn = new axButton(this, FWRD_BTN, wxPoint(x += deltaX, y), forwardIm); // 75
+    forwardBtn = new axButton(this, FWRD_BTN, wxPoint(x += deltaX, y), forwardIm);
 
 }
 
@@ -98,6 +97,7 @@ void ControlBar::OnBackBtn(wxCommandEvent& event)
 }
 void ControlBar::OnStopBtn(wxCommandEvent& event)
 {
+    playPauseBtn->setToggleValue(false);
     event.Skip();
 }
 void ControlBar::OnPlayPauseBtn(wxCommandEvent& event)
@@ -107,6 +107,7 @@ void ControlBar::OnPlayPauseBtn(wxCommandEvent& event)
 void ControlBar::OnFwrdBtn(wxCommandEvent& event)
 {
     event.Skip();
+    _DEBUG_ DSTREAM << "ControlBar OnFwrdBtn" << endl;
 }
 
 void ControlBar::OnPaint(wxPaintEvent& event)

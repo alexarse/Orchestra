@@ -85,5 +85,5 @@ void MediaPlayer::OnPlayPauseBtn(wxCommandEvent& event)
 }
 void MediaPlayer::OnFwrdBtn(wxCommandEvent& event)
 {
-
+    _DEBUG_ DSTREAM << "MediaPlayer OnFwrdBtn" << endl;
 }

@@ -49,6 +49,7 @@ void VlcVideoPlayer::play()
 void VlcVideoPlayer::stop()
 {
     libvlc_media_player_stop(vlcPlayer);
+    firstPlay_ = 1;
     _DEBUG_ DSTREAM << "VlcVideoPlayer Stop() was called." << endl; 
 }
 
