@@ -5,7 +5,7 @@
 #include "videoInterface.h"
 #include "vlc.h"
 
-class VlcVideoPlayer : public VideoInterface, public wxPanel
+class VlcVideoPlayer : public VideoInterface
 {
 public:
 	/********************************************************************************//**
@@ -19,6 +19,8 @@ public:
 
     ~VlcVideoPlayer();
 
+    virtual void mSize(const wxSize& size);
+
 	virtual long getTimeMs();
 	virtual long getTotalTimeMs();
 	virtual void setVolume(double volume);
@@ -27,12 +29,15 @@ public:
 	virtual void playPause();
     virtual void forward();
 	virtual bool loadVideo(const char* path);
+
+
 private:
 
 	libvlc_instance_t* vlcInstance;
 	libvlc_media_t* vlcMedia;
 	libvlc_media_player_t* vlcPlayer;
 
+    wxWindow* me_;
     bool firstPlay_;
 };
 

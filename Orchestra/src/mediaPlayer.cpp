@@ -1,6 +1,6 @@
 #include "MediaPlayer.h"
 
-const wxSize MediaPlayer::MINSIZE = wxSize(300, 500);
+const wxSize MediaPlayer::MINSIZE = wxSize(300, 500); // If you change this, also change VlcVideoPlayer MINSIZE!
 
 // IDs
 enum 
@@ -63,11 +63,14 @@ void MediaPlayer::mSize(const wxSize& size)
         this->SetSize(newSize);
         Refresh();
 
+
+        // Resize children with newSize, so they never resize smaller than MediaPlayer::MINSIZE
+        this->controlBar->mSize(newSize);
+        this->videoInterface->mSize(wxSize(newSize.x, newSize.y - ControlBar::MINSIZE.y));
+
         _DEBUG_ DSTREAM << "Resizing MediaPlayer: " << size.x << "x, " << size.y << "y." << endl;
     }
 
-    // Resize children
-    this->controlBar->mSize(this->GetSize());
 }
 
 // Events

@@ -1,9 +1,13 @@
 #include "VlcVideoPlayer.h"
 
+// y - ControlBar MINSIZE.y
+//const wxSize VlcVideoPlayer::MINSIZE = wxSize(300, 500 - 100); // @todo Don't do multiple inheritance and figure out a way to get MediaPlayer MINSIZE.
+
 VlcVideoPlayer::VlcVideoPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     : wxPanel(win, id, pt, size), firstPlay_(1)
 {
 	this->SetBackgroundColour(axColor(80, 80, 80));
+    me_ = win;
 
     // Create new VLC instance.
     char const* vlcOptions[] = {"--no-video-title-show"}; //Hide filename.
@@ -17,6 +21,15 @@ VlcVideoPlayer::~VlcVideoPlayer()
     //libvlc_media_release(vlcMedia);
     //libvlc_media_player_release(vlcPlayer);
     libvlc_release(vlcInstance); // Destroy VLC instance
+}
+
+void VlcVideoPlayer::mSize(const wxSize& size)
+{
+    // Don't need checks because media player sends good data
+    this->SetSize(size);
+    this->Refresh();
+
+    _DEBUG_ DSTREAM << "Resizing VideoInterface: " << size.x << "x, " << size.y << "y." << endl;   
 }
 
 long VlcVideoPlayer::getTimeMs()
@@ -70,9 +83,15 @@ bool VlcVideoPlayer::loadVideo(const char* path)
             libvlc_media_player_set_media(vlcPlayer, vlcMedia);
             libvlc_media_release(vlcMedia);
 
-            libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle())); // Needed for mixing VLC and wxWidgets.
+            // Needed for mixing VLC and wxWidgets.
+            // Needs to be after above calls, or else bug with stop button!
+            libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle())); 
+            
+            // Stuff
             //libvlc_media_player_next_frame(vlcPlayer);
-			//libvlc_video_set_format(vlcPlayer)
+			//libvlc_video_set_format(vlcPlayer);
+
+
             _DEBUG_ DSTREAM << "Loaded video file." << endl;
 
         }

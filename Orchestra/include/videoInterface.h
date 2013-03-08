@@ -3,9 +3,12 @@
 
 #include "axLib.h"
 
-class VideoInterface
+class VideoInterface : public virtual wxPanel
 {
 public:
+
+    virtual void mSize(const wxSize& size)   = 0;
+
 	virtual long getTimeMs()				 = 0;
 	virtual long getTotalTimeMs()			 = 0;
 	virtual void setVolume(double volume)	 = 0;

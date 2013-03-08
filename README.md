@@ -9,7 +9,7 @@ git status
 git commit -m 'Message pas trop descriptif'
 
 Si vous avez des fichiers deleter et vous voulez commiter les deletes:
-git add -u .
+git add . -u
 git status
 
 En cas de questions:
