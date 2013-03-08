@@ -19,7 +19,7 @@ BEGIN_EVENT_TABLE(ControlBar, wxPanel)
     EVT_BUTTON(BACK_BTN, ControlBar::OnBackBtn)
 	EVT_BUTTON(STOP_BTN, ControlBar::OnStopBtn)
 	EVT_BUTTON(PLAY_PAUSE_BTN, ControlBar::OnPlayPauseBtn)
-	EVT_BUTTON(FWRD_BTN, ControlBar::OnStopBtn)
+	EVT_BUTTON(FWRD_BTN, ControlBar::OnFwrdBtn)
 
 	//EVT_BUTTON(ID_SLIDER_LEFT_UP, ControlBar::OnSliderLeftUp)
 	//EVT_BUTTON(ID_SLIDER_DOWN, ControlBar::OnSliderDown)
@@ -97,8 +97,8 @@ void ControlBar::OnBackBtn(wxCommandEvent& event)
 }
 void ControlBar::OnStopBtn(wxCommandEvent& event)
 {
-    playPauseBtn->setToggleValue(false);
     event.Skip();
+    playPauseBtn->setToggleValue(false);
 }
 void ControlBar::OnPlayPauseBtn(wxCommandEvent& event)
 {

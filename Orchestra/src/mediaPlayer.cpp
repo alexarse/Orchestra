@@ -79,6 +79,7 @@ void MediaPlayer::OnBackBtn(wxCommandEvent& event)
 void MediaPlayer::OnStopBtn(wxCommandEvent& event)
 {
     videoInterface->stop();
+    _DEBUG_ DSTREAM << "MediaPlayer OnStopBtn" << endl;
 }
 void MediaPlayer::OnPlayPauseBtn(wxCommandEvent& event)
 {

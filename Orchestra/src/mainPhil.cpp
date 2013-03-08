@@ -17,7 +17,7 @@ IMPLEMENT_APP(Orchestra);
 bool Orchestra::OnInit()
 {
 	frame = new MainFrame(wxT("Orchestra"));
-	
+
 	frame->Show();
 	SetTopWindow(frame);
 
@@ -43,12 +43,12 @@ MainFrame::MainFrame(const wxString& title)
 	mainPanel->SetBackgroundColour(wxColor(80, 80, 80));
 
     // Create mediaPlayer
-    mediaPlayer = new MediaPlayer(mainPanel, wxID_ANY, 
-    			     wxPoint(0 , 0), 
+    mediaPlayer = new MediaPlayer(mainPanel, wxID_ANY,
+    			     wxPoint(0 , 0),
     			     wxSize(GetSize()));
 
-    //char* path = "resources/test.mp4";
-    //mediaPlayer->loadMedia(path);
+    char* path = "resources/test2.mp4";
+    mediaPlayer->loadMedia(path);
 
 }
 

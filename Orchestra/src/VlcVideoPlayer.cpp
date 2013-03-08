@@ -6,16 +6,17 @@ VlcVideoPlayer::VlcVideoPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize 
 	this->SetBackgroundColour(axColor(80, 80, 80));
 
     // Create new VLC instance.
-    if(vlcInstance = libvlc_new(0, NULL));
+    char const* vlcOptions[] = {"--no-video-title-show"}; //Hide filename.
+    if(vlcInstance = libvlc_new(1, vlcOptions));
     else {_DEBUG_ DSTREAM << "Can't Open VLC instance" << endl;}
 
 }
 
 VlcVideoPlayer::~VlcVideoPlayer()
 {
-	// @todo ERROR WHEN CLOSING IF NO VIDEO IS LOADED.
+    //libvlc_media_release(vlcMedia);
     //libvlc_media_player_release(vlcPlayer);
-    //libvlc_release(vlcInstance); // Destroy VLC instance
+    libvlc_release(vlcInstance); // Destroy VLC instance
 }
 
 long VlcVideoPlayer::getTimeMs()
@@ -31,9 +32,10 @@ void VlcVideoPlayer::setVolume(double volume)
 
 }
 
+// Control Buttons
 void VlcVideoPlayer::backward()
 {
-    // @todo Fix audio click
+    // @todo Fix audio click (if we have time!)
     libvlc_media_player_set_position(vlcPlayer, libvlc_media_player_get_position (vlcPlayer) - 0.1); // Backward 10%
 }
 void VlcVideoPlayer::stop()
@@ -54,7 +56,7 @@ void VlcVideoPlayer::playPause()
 }
 void VlcVideoPlayer::forward()
 {
-    // @todo Fix audio click
+    // @todo Fix audio click (if we have time!)
     libvlc_media_player_set_position(vlcPlayer, libvlc_media_player_get_position (vlcPlayer) + 0.1); // Forward 10%
 }
 
@@ -64,11 +66,12 @@ bool VlcVideoPlayer::loadVideo(const char* path)
 	{
 		if(vlcPlayer = libvlc_media_player_new(vlcInstance))
 		{
+
             libvlc_media_player_set_media(vlcPlayer, vlcMedia);
             libvlc_media_release(vlcMedia);
 
-			libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle())); // Needed for mixing VLC and wxWidgets.
-			//libvlc_media_player_next_frame(vlcPlayer);
+            libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle())); // Needed for mixing VLC and wxWidgets.
+            //libvlc_media_player_next_frame(vlcPlayer);
 			//libvlc_video_set_format(vlcPlayer)
             _DEBUG_ DSTREAM << "Loaded video file." << endl;
 
