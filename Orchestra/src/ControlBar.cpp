@@ -79,7 +79,7 @@ ControlBar::ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
 	sliderData.contourColor			= wxColor(50, 50, 50);
 	sliderData.sliderHeight			= 8;
 
-	slider = new axSlider(this, sliderID, sliderData, SLIDER_OFFSET, wxSize(300, 16), 0.5, 0.0, 1.0);
+	slider = new axSlider(this, sliderID, sliderData, SLIDER_OFFSET, wxSize(300, 16), 0.0, 0.0, 1.0);
 }
 
 void ControlBar::mSize(const wxSize& size)
@@ -122,6 +122,10 @@ void ControlBar::mSize(const wxSize& size)
 double ControlBar::getSliderValue() const
 {
     return this->slider->getValue();
+}
+void ControlBar::setSliderValue(double val)
+{
+    slider->setValue(val);
 }
 
 // Events

@@ -34,6 +34,12 @@ public:
 	 * @brief  Get slider value (between 0.0 and 1.0)
 	 ***********************************************************************************/
     double getSliderValue() const;
+
+	/********************************************************************************//**
+	 * @brief  Move slider position
+     * @param val Value to change slider by (between 0.0 and 1.0)
+	 ***********************************************************************************/
+    void setSliderValue(double val);
     
     // Defines
     static const wxSize MINSIZE;

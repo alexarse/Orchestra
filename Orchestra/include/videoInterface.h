@@ -6,7 +6,7 @@
 class VideoInterface : public virtual wxPanel
 {
 public:
-
+    virtual double getPosition() const       = 0;
     virtual void mSize(const wxSize& size)   = 0;
 
 	virtual long getTimeMs()				 = 0;

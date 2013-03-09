@@ -19,6 +19,7 @@ public:
 
     ~VlcVideoPlayer();
 
+    virtual double getPosition() const;
     virtual void mSize(const wxSize& size);
 
 	virtual long getTimeMs();
@@ -39,8 +40,8 @@ private:
 	libvlc_instance_t* vlcInstance;
 	libvlc_media_t* vlcMedia;
 	libvlc_media_player_t* vlcPlayer;
+    libvlc_event_manager_t* vlcEventManager;
 
-    wxWindow* me_;
     bool firstPlay_;
 };
 

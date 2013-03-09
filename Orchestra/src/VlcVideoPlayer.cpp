@@ -1,18 +1,32 @@
 #include "VlcVideoPlayer.h"
 
-// y - ControlBar MINSIZE.y
-//const wxSize VlcVideoPlayer::MINSIZE = wxSize(300, 500 - 100); // @todo Don't do multiple inheritance and figure out a way to get MediaPlayer MINSIZE.
+// VLC Callbacks
+void vlcPositionChanged(const libvlc_event_t *event, void* data);
+
 
 VlcVideoPlayer::VlcVideoPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     : wxPanel(win, id, pt, size), firstPlay_(1)
 {
 	this->SetBackgroundColour(axColor(80, 80, 80));
-    me_ = win;
 
     // Create new VLC instance.
     char const* vlcOptions[] = {"--no-video-title-show"}; //Hide filename.
+
+    // Create VLC instance
     if(vlcInstance = libvlc_new(1, vlcOptions));
     else {_DEBUG_ DSTREAM << "Can't Open VLC instance" << endl;}
+
+    // Create VLC player
+	if(vlcPlayer = libvlc_media_player_new(vlcInstance));
+    else {_DEBUG_ DSTREAM << "Can't create player from vlcMedia" << endl;}
+
+    // Create VLC EventManager
+    if(vlcEventManager = libvlc_media_player_event_manager(vlcPlayer));
+    else {_DEBUG_ DSTREAM << "Can't create VLC Event Manager" << endl;}
+
+
+    // libVLC events and callback
+    libvlc_event_attach(vlcEventManager, libvlc_MediaPlayerPositionChanged, ::vlcPositionChanged, NULL);
 
 }
 
@@ -21,6 +35,11 @@ VlcVideoPlayer::~VlcVideoPlayer()
     //libvlc_media_release(vlcMedia);
     //libvlc_media_player_release(vlcPlayer);
     libvlc_release(vlcInstance); // Destroy VLC instance
+}
+
+double VlcVideoPlayer::getPosition() const
+{
+    return double(libvlc_media_player_get_position(vlcPlayer));
 }
 
 void VlcVideoPlayer::mSize(const wxSize& size)
@@ -90,35 +109,26 @@ bool VlcVideoPlayer::loadVideo(const char* path)
 {
 	if(vlcMedia = libvlc_media_new_path(vlcInstance, path))
 	{
-		if(vlcPlayer = libvlc_media_player_new(vlcInstance))
-		{
+        libvlc_media_player_set_media(vlcPlayer, vlcMedia);
+        libvlc_media_release(vlcMedia);
 
-            libvlc_media_player_set_media(vlcPlayer, vlcMedia);
-            libvlc_media_release(vlcMedia);
+        // Needed for mixing VLC and wxWidgets.
+        // Needs to be after above calls, or else bug with stop button!
+        libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle()));
 
-            // Needed for mixing VLC and wxWidgets.
-            // Needs to be after above calls, or else bug with stop button!
-            libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle()));
-
-            // Stuff
-            //libvlc_media_player_next_frame(vlcPlayer);
-			//libvlc_video_set_format(vlcPlayer);
+        // Stuff
+        //libvlc_media_player_next_frame(vlcPlayer);
+		//libvlc_video_set_format(vlcPlayer);
 
 
-            _DEBUG_ DSTREAM << "Loaded video file." << endl;
-
-        }
-        else
-        {
-            return false;
-            _DEBUG_ DSTREAM << "Can't create player from vlcMedia" << endl;
-        }
+        _DEBUG_ DSTREAM << "Loaded video file." << endl;
     }
     else
     {
         return false;
-        _DEBUG_ DSTREAM << "Can't media from path" << endl;
+        _DEBUG_ DSTREAM << "Can't load media from path" << endl;
     }
 
     return true; // No fails loading.
 }
+
