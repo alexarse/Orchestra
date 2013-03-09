@@ -46,6 +46,10 @@ private:
     void OnPlayPauseBtn(wxCommandEvent& event);
     void OnFwrdBtn(wxCommandEvent& event);
 
+    void OnSliderLeftDown(wxCommandEvent& event);
+    void OnSliderLeftUp(wxCommandEvent& event);
+    void OnSliderMotion(wxCommandEvent& event);
+
     DECLARE_EVENT_TABLE()
 };
 

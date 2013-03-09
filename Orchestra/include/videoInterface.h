@@ -16,6 +16,9 @@ public:
 	virtual void stop()						 = 0;
 	virtual void playPause()				 = 0;
     virtual void forward()                   = 0;
+    virtual void mute()                      = 0;
+    virtual void unMute()                    = 0;
+    virtual void navigate(double pos)        = 0;
 	virtual bool loadVideo(const char* path) = 0;
 };
 

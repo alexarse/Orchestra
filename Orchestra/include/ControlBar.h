@@ -29,11 +29,17 @@ public:
 	 * @param size Resize parameters.
 	 ***********************************************************************************/
     void mSize(const wxSize& size);
+
+	/********************************************************************************//**
+	 * @brief  Get slider value (between 0.0 and 1.0)
+	 ***********************************************************************************/
+    double getSliderValue() const;
     
     // Defines
     static const wxSize MINSIZE;
     static const wxPoint BTN_OFFSET;
     static const int BTN_DELTAX;
+    static const wxPoint SLIDER_OFFSET;
 
 private:
 
@@ -42,7 +48,7 @@ private:
     axButton* forwardBtn;
     axButton* stopBtn;
     axToggle* playPauseBtn;
-    //axSlider* slider;
+    axSlider* slider;
     //axSlider* volumeCtrl;
     //axTimeCtrl* timeCtrl;
 
@@ -53,6 +59,10 @@ private:
     void OnStopBtn(wxCommandEvent& event);
     void OnPlayPauseBtn(wxCommandEvent& event);
     void OnFwrdBtn(wxCommandEvent& event);
+
+    void OnSliderLeftDown(wxCommandEvent& event);
+    void OnSliderLeftUp(wxCommandEvent& event);
+    void OnSliderMotion(wxCommandEvent& event);
 
     void OnPaint(wxPaintEvent& event);
 

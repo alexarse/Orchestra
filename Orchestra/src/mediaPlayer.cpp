@@ -8,7 +8,11 @@ enum
     BACK_BTN = 8000,
     STOP_BTN,
     PLAY_PAUSE_BTN,
-    FWRD_BTN
+    FWRD_BTN,
+
+	SLIDER_LEFT_DOWN,
+	SLIDER_LEFT_UP,
+	SLIDER_MOTION
 };
 
 // Events
@@ -20,8 +24,10 @@ BEGIN_EVENT_TABLE(MediaPlayer, wxPanel)
 	EVT_BUTTON(PLAY_PAUSE_BTN, MediaPlayer::OnPlayPauseBtn)
 	EVT_BUTTON(FWRD_BTN, MediaPlayer::OnFwrdBtn)
 
-	//EVT_BUTTON(ID_SLIDER_LEFT_UP, ControlBar::OnSliderLeftUp)
-	//EVT_BUTTON(ID_SLIDER_DOWN, ControlBar::OnSliderDown)
+	EVT_BUTTON(SLIDER_LEFT_DOWN, MediaPlayer::OnSliderLeftDown)
+	EVT_BUTTON(SLIDER_LEFT_UP, MediaPlayer::OnSliderLeftUp)
+	EVT_BUTTON(SLIDER_MOTION, MediaPlayer::OnSliderMotion)
+
 	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
 	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
 END_EVENT_TABLE()
@@ -92,4 +98,19 @@ void MediaPlayer::OnFwrdBtn(wxCommandEvent& event)
 {
     videoInterface->forward();
     _DEBUG_ DSTREAM << "MediaPlayer OnFwrdBtn" << endl;
+}
+
+void MediaPlayer::OnSliderLeftDown(wxCommandEvent& event)
+{
+    videoInterface->mute();
+}
+void MediaPlayer::OnSliderLeftUp(wxCommandEvent& event)
+{
+    videoInterface->unMute();
+}
+void MediaPlayer::OnSliderMotion(wxCommandEvent& event)
+{
+    videoInterface->navigate(controlBar->getSliderValue());
+
+    _DEBUG_ DSTREAM << "MediaPlayer getting slider motion." << endl;
 }

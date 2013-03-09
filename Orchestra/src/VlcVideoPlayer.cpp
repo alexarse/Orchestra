@@ -29,7 +29,7 @@ void VlcVideoPlayer::mSize(const wxSize& size)
     this->SetSize(size);
     this->Refresh();
 
-    _DEBUG_ DSTREAM << "Resizing VideoInterface: " << size.x << "x, " << size.y << "y." << endl;   
+    _DEBUG_ DSTREAM << "Resizing VideoInterface: " << size.x << "x, " << size.y << "y." << endl;
 }
 
 long VlcVideoPlayer::getTimeMs()
@@ -73,6 +73,19 @@ void VlcVideoPlayer::forward()
     libvlc_media_player_set_position(vlcPlayer, libvlc_media_player_get_position (vlcPlayer) + 0.1); // Forward 10%
 }
 
+void VlcVideoPlayer::mute()
+{
+    libvlc_audio_set_mute(vlcPlayer, true);
+}
+void VlcVideoPlayer::unMute()
+{
+    libvlc_audio_set_mute(vlcPlayer, false);
+}
+void VlcVideoPlayer::navigate(double pos)
+{
+    libvlc_media_player_set_position(vlcPlayer, float(pos));
+}
+
 bool VlcVideoPlayer::loadVideo(const char* path)
 {
 	if(vlcMedia = libvlc_media_new_path(vlcInstance, path))
@@ -85,8 +98,8 @@ bool VlcVideoPlayer::loadVideo(const char* path)
 
             // Needed for mixing VLC and wxWidgets.
             // Needs to be after above calls, or else bug with stop button!
-            libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle())); 
-            
+            libvlc_media_player_set_hwnd(vlcPlayer, reinterpret_cast<void *> ((HWND)this->GetHandle()));
+
             // Stuff
             //libvlc_media_player_next_frame(vlcPlayer);
 			//libvlc_video_set_format(vlcPlayer);
