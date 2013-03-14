@@ -5,9 +5,10 @@
 #include "videoInterface.h"
 #include "vlc.h"
 
-class VlcVideoPlayer : public VideoInterface
+class VlcVideoPlayer : public VideoInterface, public wxPanel
 {
 public:
+
 	/********************************************************************************//**
 	 * @brief  Constructor
 	 * @param win wxWindow pointer.
@@ -15,7 +16,7 @@ public:
      * @param pt Position x, y.
      * @param size Size width, height
 	 ***********************************************************************************/
-    VlcVideoPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size);
+    VlcVideoPlayer(wxWindow* win, const VideoID& id, wxPoint pt, wxSize size);
 
     ~VlcVideoPlayer();
 
@@ -42,7 +43,17 @@ private:
 	libvlc_media_player_t* vlcPlayer;
     libvlc_event_manager_t* vlcEventManager;
 
+    virtual void videoMovedCallback();
+    void OnVideoCallback(wxCommandEvent& event);
+
+    VideoID videoID_;
+
+    // VLC Callbacks
+    static void vlcPositionChanged(const libvlc_event_t *event, void* data);
+
     bool firstPlay_;
+
+    DECLARE_EVENT_TABLE()
 };
 
 #endif // _VLCVIDEOPLAYER_H_

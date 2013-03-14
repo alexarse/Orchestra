@@ -13,6 +13,9 @@ enum
 	SLIDER_LEFT_DOWN,
 	SLIDER_LEFT_UP,
 	SLIDER_MOTION,
+
+    VIDEO_MOTION,
+    VIDEO_STOP
 };
 
 //DEFINE_EVENT_TYPE(vlcEVT_POS)
@@ -30,13 +33,13 @@ BEGIN_EVENT_TABLE(MediaPlayer, wxPanel)
 	EVT_BUTTON(SLIDER_LEFT_UP, MediaPlayer::OnSliderLeftUp)
 	EVT_BUTTON(SLIDER_MOTION, MediaPlayer::OnSliderMotion)
 
+    EVT_BUTTON(VIDEO_MOTION, MediaPlayer::changeSlider)
+
     //EVT_BUTTON(TEST, MediaPlayer::changeSlider)
 
 	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
 	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
 END_EVENT_TABLE()
-
-MediaPlayer* mediaPlayer;
 
 MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     : wxPanel(win, id, pt, size)
@@ -47,10 +50,15 @@ MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     controlBar = new ControlBar(this, wxID_ANY, 
     			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y), 
     			     wxSize(GetSize().x, ControlBar::MINSIZE.y));
+    
 
-    videoInterface = new VlcVideoPlayer(this, wxID_ANY, wxPoint(0, 0), wxSize(GetSize().x, GetSize().y - ControlBar::MINSIZE.y));
+    // videoInterface IDs
+	VideoID videoID;
+    videoID.videoMoved = VIDEO_MOTION;
+    videoID.videoStop = VIDEO_STOP;
 
-    mediaPlayer = this;
+    videoInterface = new VlcVideoPlayer(this, videoID, wxPoint(0, 0), wxSize(GetSize().x, GetSize().y - ControlBar::MINSIZE.y));
+
 }
 
 bool MediaPlayer::loadMedia(const char* videoPath)
@@ -97,6 +105,7 @@ void MediaPlayer::OnBackBtn(wxCommandEvent& event)
 void MediaPlayer::OnStopBtn(wxCommandEvent& event)
 {
     videoInterface->stop();
+    controlBar->setSliderValue(0.0);
     _DEBUG_ DSTREAM << "MediaPlayer OnStopBtn" << endl;
 }
 void MediaPlayer::OnPlayPauseBtn(wxCommandEvent& event)
@@ -126,23 +135,8 @@ void MediaPlayer::OnSliderMotion(wxCommandEvent& event)
     _DEBUG_ DSTREAM << "MediaPlayer getting slider motion." << endl;
 }
 
-void MediaPlayer::changeSlider()
+void MediaPlayer::changeSlider(wxCommandEvent& event)
 {
     controlBar->setSliderValue(videoInterface->getPosition());
-    _DEBUG_ DSTREAM << "test" << endl;    
-}
-
-// VLC callbacks
-void vlcPositionChanged(const libvlc_event_t *event, void *data) {
-
-   // wxCommandEvent evt(vlcEVT_POS, TEST);
-
-    //MediaPlayer::changeSlider();
-
-    mediaPlayer->changeSlider();
-
-    //wxCommandEvent vlcEvent(wxEVT_COMMAND_BUTTON_CLICKED, TEST);
-    //wxPostEvent(this, vlcEvent);
-
-    _DEBUG_ DSTREAM << "MediaPlayer VLC position changed callback"  << endl;
+    _DEBUG_ DSTREAM << "Slider moving with VLC callback event." << endl;    
 }

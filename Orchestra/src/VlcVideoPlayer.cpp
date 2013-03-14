@@ -1,11 +1,15 @@
 #include "VlcVideoPlayer.h"
 
 // VLC Callbacks
-void vlcPositionChanged(const libvlc_event_t *event, void* data);
+//void vlcPositionChanged(const libvlc_event_t *event, void* data);
 
 
-VlcVideoPlayer::VlcVideoPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
-    : wxPanel(win, id, pt, size), firstPlay_(1)
+BEGIN_EVENT_TABLE(VlcVideoPlayer, wxPanel)
+    EVT_BUTTON(wxID_ANY, VlcVideoPlayer::OnVideoCallback)
+END_EVENT_TABLE()
+
+VlcVideoPlayer::VlcVideoPlayer(wxWindow* win, const VideoID& id, wxPoint pt, wxSize size)
+    : wxPanel(win, wxID_ANY, pt, size), videoID_(id), firstPlay_(1)
 {
 	this->SetBackgroundColour(axColor(80, 80, 80));
 
@@ -26,7 +30,7 @@ VlcVideoPlayer::VlcVideoPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize 
 
 
     // libVLC events and callback
-    libvlc_event_attach(vlcEventManager, libvlc_MediaPlayerPositionChanged, ::vlcPositionChanged, NULL);
+    libvlc_event_attach(vlcEventManager, libvlc_MediaPlayerPositionChanged, VlcVideoPlayer::vlcPositionChanged, this);
 
 }
 
@@ -132,3 +136,22 @@ bool VlcVideoPlayer::loadVideo(const char* path)
     return true; // No fails loading.
 }
 
+void VlcVideoPlayer::videoMovedCallback()
+{
+    if (videoID_.videoMoved)
+    {
+        wxCommandEvent btnEvent(wxEVT_COMMAND_BUTTON_CLICKED, videoID_.videoMoved);
+        wxPostEvent(this, btnEvent);
+    }
+}
+
+void VlcVideoPlayer::vlcPositionChanged(const libvlc_event_t *event, void* data)
+{
+    ((VlcVideoPlayer*)data)->videoMovedCallback();
+}
+
+// Call mediaPlayer event with id of callback
+void VlcVideoPlayer::OnVideoCallback(wxCommandEvent& event)
+{
+    event.Skip();
+}

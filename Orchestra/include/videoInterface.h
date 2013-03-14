@@ -3,7 +3,14 @@
 
 #include "axLib.h"
 
-class VideoInterface : public virtual wxPanel
+struct VideoID 
+{
+    int videoMoved;
+    int videoStop;
+};
+
+
+class VideoInterface// : public virtual wxPanel
 {
 public:
     virtual double getPosition() const       = 0;
@@ -20,6 +27,10 @@ public:
     virtual void unMute()                    = 0;
     virtual void navigate(double pos)        = 0;
 	virtual bool loadVideo(const char* path) = 0;
+
+private:
+
+    virtual void videoMovedCallback()        = 0;
 };
 
 #endif // _VIDEOINTERFACE_H_

@@ -31,13 +31,6 @@ public:
 	 ***********************************************************************************/
     void mSize(const wxSize& size);
 
-	/********************************************************************************//**
-	 * @brief  Callback to move slider.
-	 ***********************************************************************************/
-    static void vlcPositionChanged(const libvlc_event_t *event, void *data);
-
-    void changeSlider();
-
     // Defines
     static const wxSize MINSIZE;
 
@@ -56,6 +49,8 @@ private:
     void OnSliderLeftDown(wxCommandEvent& event);
     void OnSliderLeftUp(wxCommandEvent& event);
     void OnSliderMotion(wxCommandEvent& event);
+
+    void changeSlider(wxCommandEvent& event);
 
     DECLARE_EVENT_TABLE()
 };
