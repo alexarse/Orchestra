@@ -29,6 +29,7 @@ Partition::Partition(wxWindow* win, wxWindowID id, const wxPoint& pt, const wxSi
 	selectedMarker = 0;
 	nbMarker = 0;
 	markerData = NULL;
+	pastResizeTick = 0;
 } 
 
 bool Partition::loadInfo(const wxString& data_path, const vector<wxString>& list)
@@ -37,24 +38,6 @@ bool Partition::loadInfo(const wxString& data_path, const vector<wxString>& list
 		return false;
 
 	setImageList(list);
-
-	currentImg = wxImage(imgList[0]);
-
-	if(currentImg.IsOk())
-	{
-		resizeRatio_x = double(GetSize().x) / currentImg.GetWidth();
-		resizeRatio_y = double(GetSize().y) / currentImg.GetHeight();
-
-		currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
-						   currentImg.GetHeight() * resizeRatio_y, 
-						   wxIMAGE_QUALITY_HIGH);
-	}
-	else 
-	{
-		_DEBUG_ DSTREAM << "ERROR LOADING IMG" << endl;
-	}
-
-	Refresh();
 
 	return true;
 }
@@ -91,6 +74,23 @@ bool Partition::loadMarkerInfo(wxString path)
 void Partition::setImageList(const vector<wxString>& list)
 {
 	imgList = list;
+	currentImg = wxImage(imgList[0]);
+
+	if(currentImg.IsOk())
+	{
+		resizeRatio_x = double(GetSize().x) / currentImg.GetWidth();
+		resizeRatio_y = double(GetSize().y) / currentImg.GetHeight();
+
+		currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
+						   currentImg.GetHeight() * resizeRatio_y, 
+						   wxIMAGE_QUALITY_HIGH);
+	}
+	else 
+	{
+		_DEBUG_ DSTREAM << "ERROR LOADING IMG" << endl;
+	}
+
+	Refresh();
 }
 bool Partition::changeTime(double timeMs)
 {
@@ -164,24 +164,34 @@ void Partition::createSelectedMarkerImage()
 }
 void Partition::mSize(wxSize size)
 {
-	this->SetSize(size);
-	if(markerData)
+	wxLongLong clickTime = wxGetLocalTimeMillis();
+	//_DEBUG_ DSTREAM << "CLICKTIME : Partition : " << clickTime << endl;
+	if(clickTime - pastResizeTick >= wxLongLong(400))
 	{
-		_DEBUG_ DSTREAM << "RESIZE Partition" << endl;
-		// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
-		currentImg = wxImage(imgList[markerData[selectedMarker].numImg]);
+		this->SetSize(size);
+		if(markerData)
+		{
+			_DEBUG_ DSTREAM << " Resizing Partition" << endl;
 
-		resizeRatio_x = double(size.x) / currentImg.GetWidth();
-		resizeRatio_y = double(size.y) / currentImg.GetHeight();
+			// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
+			currentImg = wxImage(imgList[markerData[selectedMarker].numImg]);
 
-		currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
-							currentImg.GetHeight() * resizeRatio_y, 
-							wxIMAGE_QUALITY_HIGH);
+			resizeRatio_x = double(size.x) / currentImg.GetWidth();
+			resizeRatio_y = double(size.y) / currentImg.GetHeight();
 
-		createSelectedMarkerImage();
-		Refresh();
+			currentImg.Rescale(size.x, size.y, wxIMAGE_QUALITY_HIGH);
+
+			//currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
+			//					currentImg.GetHeight() * resizeRatio_y, 
+			//					wxIMAGE_QUALITY_HIGH);
+
+			createSelectedMarkerImage();
+			Refresh();
+		}
 	}
+	pastResizeTick = clickTime;
 }
+
 void Partition::OnMouseLeftDown(wxMouseEvent& event)
 {
 	

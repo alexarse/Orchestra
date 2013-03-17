@@ -9,10 +9,9 @@
 
 #include "axLib.h"
 
-
+/// @todo Needs Documentation.
 class ControlBar : public wxPanel
 {
-
 public:
 
 	/********************************************************************************//**

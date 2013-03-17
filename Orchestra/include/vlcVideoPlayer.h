@@ -1,3 +1,9 @@
+/********************************************************************************//**
+ * @file	VlcVideoPlayer.h
+ * @author  Philippe Groarke <philippe.groarke@polymtl.ca>
+ * @brief	class VlcVideoPlayer
+ * @date	Creation 07/03/2013
+ ***********************************************************************************/
 #ifndef _VLCVIDEOPLAYER_H_
 #define _VLCVIDEOPLAYER_H_
 
@@ -5,6 +11,7 @@
 #include "videoInterface.h"
 #include "vlc.h"
 
+/// @todo Needs Documentation.
 class VlcVideoPlayer : public VideoInterface, public wxPanel
 {
 public:

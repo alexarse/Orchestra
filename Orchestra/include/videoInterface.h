@@ -1,9 +1,16 @@
+/********************************************************************************//**
+ * @file	VideoInterface.h
+ * @author	Alexandre Arsenault <alexandre.arsenault@polymtl.ca>
+ * @author  Philippe Groarke <philippe.groarke@polymtl.ca>
+ * @brief	class VideoInterface
+ * @date	Creation 07/03/2013
+ ***********************************************************************************/
 #ifndef _VIDEOINTERFACE_H_
 #define _VIDEOINTERFACE_H_
 
 #include "axLib.h"
 
-struct VideoID 
+struct VideoID
 {
     int videoMoved;
     int videoStop;
@@ -17,7 +24,9 @@ public:
     virtual void mSize(const wxSize& size)   = 0;
 
 	virtual long getTimeMs()				 = 0;
+	/// @todo Needs Documentation.
 	virtual long getTotalTimeMs()			 = 0;
+	/// @todo Needs Documentation.
 	virtual void setVolume(double volume)	 = 0;
     virtual void backward()                  = 0;
 	virtual void stop()						 = 0;

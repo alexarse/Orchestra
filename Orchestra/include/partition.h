@@ -74,6 +74,8 @@ private:
 
 	double resizeRatio_x, resizeRatio_y;
 
+	wxLongLong pastResizeTick;
+
 	/********************************************************************************//**
 	* @brief Create and resize a transparent image for the selected marker.
 	***********************************************************************************/

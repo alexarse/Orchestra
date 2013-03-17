@@ -6,6 +6,7 @@
 #include "VideoInterface.h"
 #include "VlcVideoPlayer.h"
 
+/// @todo Needs Documentation.
 class MediaPlayer : public wxPanel
 {
 public:
@@ -32,6 +33,7 @@ public:
     void mSize(const wxSize& size);
 
     // Defines
+	/// @todo Needs Documentation.
     static const wxSize MINSIZE;
 
 private:

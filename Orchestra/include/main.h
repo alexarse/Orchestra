@@ -14,6 +14,7 @@
 
 #define MAIN_FRAME_MENU_EVENT (7000)
 
+/// @todo Needs Documentation.
 class MainFrame : public wxFrame
 {
 public:
@@ -36,6 +37,7 @@ private:
 	Partition* partition;
 
 	void CreateMenu();
+	void resize();
 
 	/********************************************************************************//**
 	 * @brief  MainFrame is the only Class to use wxSizeEvent and takes care of 
@@ -52,6 +54,7 @@ private:
 	DECLARE_EVENT_TABLE()
 };
 
+/// @todo Needs Documentation.
 class Orchestra: public wxApp
 {
 public:

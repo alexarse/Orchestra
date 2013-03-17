@@ -1,9 +1,10 @@
+/// @todo Needs Documentation Header.
 #include "MediaPlayer.h"
 
 const wxSize MediaPlayer::MINSIZE = wxSize(300, 500); // If you change this, also change VlcVideoPlayer MINSIZE!
 
 // IDs
-enum 
+enum
 {
     BACK_BTN = 8000,
     STOP_BTN,
@@ -47,10 +48,10 @@ MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
 	this->SetBackgroundColour(axColor(80, 80, 80));
 
     // Create controlBar first, to pass pointer to videoInterface (for callback).
-    controlBar = new ControlBar(this, wxID_ANY, 
-    			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y), 
+    controlBar = new ControlBar(this, wxID_ANY,
+    			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y),
     			     wxSize(GetSize().x, ControlBar::MINSIZE.y));
-    
+
 
     // videoInterface IDs
 	VideoID videoID;
@@ -66,25 +67,22 @@ bool MediaPlayer::loadMedia(const char* videoPath)
     return videoInterface->loadVideo(videoPath);
 }
 
-void MediaPlayer::mSize(const wxSize& size)
+void MediaPlayer::mSize(const wxSize& newSize)
 {
-    if (size.x >= 0 && size.y >= 0)
-    {
-        wxSize newSize = this->GetSize();
-        // Resize x
-        if (size.x >= MINSIZE.x)
-        {
-            newSize.x = size.x;
-        }
+        wxSize size = this->GetSize();
+
+		// Resize x
+        if (newSize.x >= MINSIZE.x)
+            size.x = newSize.x;
 
         // Resize y
-        if (size.y >= MINSIZE.y)
-        {
-            newSize.y = size.y;
-        }
+        if (newSize.y >= MINSIZE.y)
+            size.y = newSize.y;
 
-        this->SetSize(newSize);
-        Refresh();
+		if(size != GetSize())
+		{
+			this->SetSize(size);
+			Refresh();
 
 
         // Resize children with newSize, so they never resize smaller than MediaPlayer::MINSIZE
@@ -138,5 +136,5 @@ void MediaPlayer::OnSliderMotion(wxCommandEvent& event)
 void MediaPlayer::changeSlider(wxCommandEvent& event)
 {
     controlBar->setSliderValue(videoInterface->getPosition());
-    _DEBUG_ DSTREAM << "Slider moving with VLC callback event." << endl;    
+    _DEBUG_ DSTREAM << "Slider moving with VLC callback event." << endl;
 }

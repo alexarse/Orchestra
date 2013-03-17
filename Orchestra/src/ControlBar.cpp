@@ -1,3 +1,4 @@
+/// @todo Needs Documentation Header.
 #include "ControlBar.h"
 
 const wxSize ControlBar::MINSIZE = wxSize(300, 100);

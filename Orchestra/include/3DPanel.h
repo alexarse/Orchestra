@@ -1,3 +1,4 @@
+/// @todo Needs Documentation Header.
 #ifndef DEF_3DPANEL_H
 #define DEF_3DPANEL_H
 
@@ -23,6 +24,7 @@ typedef irr::scene::IBoneSceneNode			irr_Bone;
 typedef irr::core::quaternion				irr_quatornion;
 //typedef irr::scene::IAnimatedMeshSceneNode	irr_Animated_Node;
 
+/// @todo Needs Documentation.
 class Device3D : public wxWindow
 {
 public:
@@ -30,9 +32,13 @@ public:
 	~Device3D();
 
 	//inline irr_Device		*GetHandle()		{ return irrDevice; }
+
+	/// @todo Needs Documentation.
 	inline irr_SceneManager *GetSceneManager()	{ return irrDevice ? irrDevice->getSceneManager() : NULL; }
+	/// @todo Needs Documentation.
 	inline irr_VideoDriver	*GetVideoDriver()	{ return irrDevice ? irrDevice->getVideoDriver()  : NULL; }
 
+	/// @todo Needs Documentation.
 	irr_Camera* AddCamera(irr_Node* parent = 0, 
 						  irr_Vector3D& position = irr_Vector3D(0.0f, 0.0f, 0.0f), 
 						  irr_Vector3D& lookat = irr_Vector3D(0.0f, 0.0f, 1.0f), 

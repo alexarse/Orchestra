@@ -10,6 +10,7 @@
 #include "axLib.h"
 #include <vector>
 
+/// @todo Needs Documentation.
 struct t_info
 {
 	wxString folderName;
@@ -17,6 +18,7 @@ struct t_info
 	vector<wxString> paritionImg;
 };
 
+/// @todo Needs Documentation.
 struct t_folder
 {
 	wxString name;
@@ -25,6 +27,7 @@ struct t_folder
 
 /********************************************************************************//**
 * @brief MenuPanel
+* @todo Needs Documentation.
 ***********************************************************************************/
 class MenuPanel: public wxPanel
 {
@@ -37,7 +40,7 @@ public:
 	***********************************************************************************/
 	void mSize(wxSize size);
 
-
+	t_info getSelectionInfo();
 
 private:
 

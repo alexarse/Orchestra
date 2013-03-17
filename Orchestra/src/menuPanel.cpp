@@ -37,15 +37,14 @@ MenuPanel::MenuPanel(wxWindow* win, const wxWindowID& id, wxPoint pos, wxSize si
 	}
 	else
 	{
-		_DEBUG_ DSTREAM << "ERROR : Lire dans les dossiers." << endl;
+		_DEBUG_ DSTREAM << "ERROR MenuPanel : Lire dans les dossiers." << endl;
 	}
 } 
 
 int MenuPanel::remplirTableauInformation()
 {
-	wxString path = currentFolder;
-
 	// Open current folder
+	wxString path = currentFolder;
 	wxDir dir( path );
 
 	if ( !dir.IsOpened() )
@@ -61,6 +60,7 @@ int MenuPanel::remplirTableauInformation()
 		bool cont = dir.GetFirst(&path, wxEmptyString, wxDIR_DIRS);
 		int i = 0; // Folder count
 
+		// Lit dans les dossiers. (Songs)
 		while ( cont )
 		{
 			_DEBUG_ DSTREAM << "FOLDER : " << path << endl;
@@ -75,7 +75,7 @@ int MenuPanel::remplirTableauInformation()
 
 			// Open sub folder.
 			wxString subFolderName = currentFolder + path + wxT("/");
-
+			wxString longSubFolderName = subFolderName;
 			_DEBUG_ DSTREAM << "SUBFOLDER : " << subFolderName << endl;
 
 			wxDir subDir( subFolderName );
@@ -84,7 +84,6 @@ int MenuPanel::remplirTableauInformation()
 			if ( !subDir.IsOpened() )
 			{
 				_DEBUG_ DSTREAM << "ERROR : Le sous dossier n'a pas ouvert" << endl;
-
 				/// @todo Deal wih error.
 				return 0;
 			}
@@ -96,6 +95,7 @@ int MenuPanel::remplirTableauInformation()
 				bool subCont = subDir.GetFirst(&subFolderName, wxEmptyString, wxDIR_DIRS);
 				int j = 0;
 
+				// Lit dans les sous-dossiers. (Lessons)
 				while ( subCont )
 				{
 					// Variable pour remplir le vector.
@@ -107,11 +107,59 @@ int MenuPanel::remplirTableauInformation()
 					_DEBUG_ DSTREAM << " SUBFOLDER : " << subFolderName << endl;
 
 					/// @todo Read folder info.
+					wxArrayString* files = new wxArrayString();
+					int nbFiles = subDir.GetAllFiles(longSubFolderName + subFolderName, files, wxEmptyString, wxDIR_DEFAULT);
+					
+					// Lire dans les lessons.
+					for(int n = 0; n < files->GetCount(); ++n)
+					{
+						//_DEBUG_ DSTREAM << "TEST : " << files->Item(n) << endl;
+						wxString s = files->Item(n);
+						wxString pos = s[s.Length()];
+						int k = 1;
+
+						// Trouver l'extension.
+						while(pos != '.')
+						{
+							pos = s[s.Length() - k];
+							_DEBUG_ DSTREAM << s[s.Length() - k] << endl;
+							++k;
+						}
+						
+						--k;
+						
+						// Creer un wxString avec l'extension.
+						wxString s2;
+						int size = k;
+						for(int i = 0; i < size; ++i)
+						{
+							s2 += s[s.Length() - k];
+							--k;
+						}
+						//_DEBUG_ DSTREAM << ".... : " << s2 << endl;
+
+						if( s2 == wxT(".png") )
+						{
+							_DEBUG_ DSTREAM << "PNG" << endl;
+							folders[i].subfolders[j].paritionImg.push_back(s);
+						}
+
+						else if( s2 == wxT(".avi") )
+						{
+							_DEBUG_ DSTREAM << "AVI" << endl;
+							folders[i].subfolders[j].video = s;
+						}
+
+						else if( s2 == wxT(".data") )
+						{
+							_DEBUG_ DSTREAM << "DATA" << endl;
+							folders[i].subfolders[j].markerData = s;
+						}
+					}
 
 					/// @todo Deal with error.
 
 					subCont = subDir.GetNext(&subFolderName);
-
 					++j;
 				}
 
@@ -123,6 +171,10 @@ int MenuPanel::remplirTableauInformation()
 
 	return 1;
 }
+t_info MenuPanel::getSelectionInfo()
+{
+	return folders[selectedFolder].subfolders[selectedSubFolder];
+}
 
 int MenuPanel::creerMenu()
 {
@@ -133,7 +185,7 @@ int MenuPanel::creerMenu()
 	menu = new axTreeMenu(this, wxID_ANY, wxPoint(0, 30), GetSize(), &scrollBarImg);
 
 	// Images for folder and subfolder.
-	axMultipleBitmap* mainNodeImg = new axMultipleBitmap(wxT("resources/widget/MainNode.png"),  2, wxSize(12, 12));
+	axMultipleBitmap* mainNodeImg = new axMultipleBitmap(wxT("resources/widget/mainNode2.png"),  2, wxSize(12, 12));
 	axMultipleBitmap* subNodeImg  = new axMultipleBitmap(wxT("resources/widget/SubNode.png"),   2, wxSize(12, 12));
 	axMultipleBitmap* subNodeImg2 = new axMultipleBitmap(wxT("resources/widget/blackNode.png"), 2, wxSize(12, 12));
 	
