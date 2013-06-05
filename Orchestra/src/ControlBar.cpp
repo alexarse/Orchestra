@@ -48,10 +48,8 @@ ControlBar::ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     int x = BTN_OFFSET.x, deltaX = BTN_DELTAX, y = BTN_OFFSET.y; // Offset pour controls
     wxSize img_size(25, 25); // Size of button images
     
-    
     axMultipleBitmap backwardIm(wxString("resources/ControlBar/backwardBtn.png"), 3, img_size);
     backwardBtn = new axButton(this, BACK_BTN, wxPoint(x, y), backwardIm);
-
 
     axMultipleBitmap stopIm(wxString("resources/ControlBar/stopBtn.png"), 3, img_size);
     stopBtn = new axButton(this, STOP_BTN, wxPoint(x += deltaX, y), stopIm);
@@ -81,6 +79,9 @@ ControlBar::ControlBar(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
 	sliderData.sliderHeight			= 8;
 
 	slider = new axSlider(this, sliderID, sliderData, SLIDER_OFFSET, wxSize(300, 16), 0.0, 0.0, 1.0);
+
+
+	timeCtrl = new axTimeCtrl(this, wxID_ANY, wxPoint(GetSize().x - 70, BTN_OFFSET.y + 8));
 }
 
 void ControlBar::mSize(const wxSize& size)
@@ -105,8 +106,8 @@ void ControlBar::mSize(const wxSize& size)
 
             // Resize slider
             //int slider_x = ((this->GetSize().x - MINSIZE.x)/2) + SLIDER_OFFSET.x, slider_y = SLIDER_OFFSET.y;
-            this->slider->SetSize(wxSize(this->GetSize().x - (SLIDER_OFFSET.x * 3), slider->GetSize().y));
-
+            slider->SetSize(wxSize(this->GetSize().x - (SLIDER_OFFSET.x * 3), slider->GetSize().y));
+			timeCtrl->SetPosition(wxPoint(GetSize().x - 70, BTN_OFFSET.y + 8));
             Refresh();
 
             _DEBUG_ DSTREAM << "Resizing ControlBar: " << size.x << "x, " << size.y << "y." << endl;
@@ -127,6 +128,10 @@ double ControlBar::getSliderValue() const
 void ControlBar::setSliderValue(double val)
 {
     slider->setValue(val);
+}
+void ControlBar::setTimeInSec(long sec)
+{
+	timeCtrl->setTimeInSec(sec);
 }
 
 // Events

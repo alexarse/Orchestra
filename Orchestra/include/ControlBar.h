@@ -35,10 +35,12 @@ public:
     double getSliderValue() const;
 
 	/********************************************************************************//**
-	 * @brief  Move slider position
+	 * @brief Move slider position
      * @param val Value to change slider by (between 0.0 and 1.0)
 	 ***********************************************************************************/
     void setSliderValue(double val);
+
+	void setTimeInSec(long sec);
     
     // Defines
     static const wxSize MINSIZE;
@@ -55,7 +57,7 @@ private:
     axToggle* playPauseBtn;
     axSlider* slider;
     //axSlider* volumeCtrl;
-    //axTimeCtrl* timeCtrl;
+    axTimeCtrl* timeCtrl;
 
     //scoreCtrl* scoreCtrl;
 

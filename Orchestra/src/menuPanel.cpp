@@ -8,9 +8,6 @@
 
 #define MENU_ID (8000)
 
-//-----------------------------------------------------------------------------------
-// MenuPanel
-//-----------------------------------------------------------------------------------
 BEGIN_EVENT_TABLE(MenuPanel, wxPanel)
 	//EVT_PAINT(MenuPanel::OnPaint)
 	EVT_LEFT_DOWN(MenuPanel::OnMouseLeftDown)
@@ -171,6 +168,7 @@ int MenuPanel::remplirTableauInformation()
 
 	return 1;
 }
+
 t_info MenuPanel::getSelectionInfo()
 {
 	return folders[selectedFolder].subfolders[selectedSubFolder];
@@ -244,6 +242,7 @@ int MenuPanel::creerMenu()
 
 	return 1;
 }
+
 void MenuPanel::mSize(wxSize size)
 {
 

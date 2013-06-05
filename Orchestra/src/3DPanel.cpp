@@ -10,7 +10,6 @@ BEGIN_EVENT_TABLE(Device3D, wxWindow)
    EVT_LEFT_DOWN(Device3D::OnMouseLeftDown)
 END_EVENT_TABLE()
 
-
 Device3D::Device3D(wxWindow* win, wxPoint point, wxSize size, irr_DriverType type, bool bResizeable)
 		   : wxWindow(win, wxID_ANY, point, size)
 {

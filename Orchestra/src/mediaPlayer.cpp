@@ -37,8 +37,8 @@ END_EVENT_TABLE()
 MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     : wxPanel(win, id, pt, size)
 {
-	this->SetBackgroundColour(axColor(80, 80, 80));
-
+	SetBackgroundColour(axColor(80, 80, 80));
+	
     // Create controlBar first, to pass pointer to videoInterface (for callback).
     controlBar = new ControlBar(this, wxID_ANY, wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y),
     							wxSize(GetSize().x, ControlBar::MINSIZE.y));
@@ -51,7 +51,6 @@ MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
 	wxSize mediaSize(GetSize().x, (GetSize().y - ControlBar::MINSIZE.y) * 0.5);
 	device3D = new Device3D(this, wxPoint(0, 0), mediaSize, irr::video::EDT_OPENGL, true);
     videoInterface = new VlcVideoPlayer(this, videoID, wxPoint(0, mediaSize.y), mediaSize);
-	
 }
 
 bool MediaPlayer::loadMedia(const char* videoPath)
@@ -126,6 +125,7 @@ void MediaPlayer::OnSliderLeftUp(wxCommandEvent& event)
 void MediaPlayer::OnSliderMotion(wxCommandEvent& event)
 {
     videoInterface->navigate(controlBar->getSliderValue());
+	controlBar->setTimeInSec(videoInterface->getTimeMs() / 1000.0);
 
     _DEBUG_ DSTREAM << "MediaPlayer getting slider motion." << endl;
 }
@@ -133,5 +133,7 @@ void MediaPlayer::OnSliderMotion(wxCommandEvent& event)
 void MediaPlayer::changeSlider(wxCommandEvent& event)
 {
     controlBar->setSliderValue(videoInterface->getPosition());
+	controlBar->setTimeInSec(videoInterface->getTimeMs() / 1000.0);
+
     _DEBUG_ DSTREAM << "Slider moving with VLC callback event." << endl;
 }
