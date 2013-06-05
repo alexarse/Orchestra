@@ -34,22 +34,23 @@ Partition::Partition(wxWindow* win, wxWindowID id, const wxPoint& pt, const wxSi
 
 bool Partition::loadInfo(const wxString& data_path, const vector<wxString>& list)
 {
-	if(!loadMarkerInfo(data_path))
-		return false;
-
+	if(!loadMarkerInfo(data_path)) return false;
+		
 	setImageList(list);
 
 	return true;
 }
 
-bool Partition::loadMarkerInfo(wxString path)
+bool Partition::loadMarkerInfo( wxString path )
 {
 	ifstream data(path.char_str(), ios::binary);
+
 	if(data.fail())
 	{
 		_DEBUG_ DSTREAM << "ERROR : Load data in Partition" << endl;
 		return false;
 	}
+
 	else
 	{
 		data.seekg(0);
@@ -63,54 +64,24 @@ bool Partition::loadMarkerInfo(wxString path)
 		data.close();
 	}
 
-	//for(int i = 0; i < nbMarker; ++i)
-	//{
-	//	_DEBUG_ DSTREAM << "Num Img : " << markerData[i].numImg << endl;
-	//	_DEBUG_ DSTREAM << "Num Pos : " << markerData[i].posInFile << endl;
-	//}
-
 	return true;
 }
+
 void Partition::setImageList(const vector<wxString>& list)
 {
 	imgList = list;
 	currentImg = wxImage(imgList[0]);
-
-	if(currentImg.IsOk())
-	{
-		resizeRatio_x = double(GetSize().x) / currentImg.GetWidth();
-		resizeRatio_y = double(GetSize().y) / currentImg.GetHeight();
-
-		currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
-						   currentImg.GetHeight() * resizeRatio_y, 
-						   wxIMAGE_QUALITY_HIGH);
-	}
-	else 
-	{
-		_DEBUG_ DSTREAM << "ERROR LOADING IMG" << endl;
-	}
-
 	Refresh();
 }
-bool Partition::changeTime(double timeMs)
+
+bool Partition::changeTime( double timeMs )
 {
 	timeMs /= 1000.0;
 
 	if(timeMs > markerData[nbMarker - 1].time) 
 	{
 		selectedMarker = nbMarker - 1;
-			
-		// Mettre la bonne image.
-		currentImg = wxImage(imgList[markerData[nbMarker - 1].numImg]);
-		
-		resizeRatio_x = double(GetSize().x) / currentImg.GetWidth();
-		resizeRatio_y = double(GetSize().y) / currentImg.GetHeight();
-
-		currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
-						   currentImg.GetHeight() * resizeRatio_y, 
-						   wxIMAGE_QUALITY_HIGH);
-
-		// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
+		scaleImage(markerData[nbMarker - 1].numImg);
 		createSelectedMarkerImage();
 		Refresh();
 
@@ -119,23 +90,10 @@ bool Partition::changeTime(double timeMs)
 
 	for(int i = 0; i < nbMarker - 1; ++i)
 	{
-		//_DEBUG_ DSTREAM << "MARKER IMG : " << markerData[i].numImg << endl;
-		_DEBUG_ DSTREAM << "MARKER TIME : " << markerData[i].time << endl;
-
 		if(markerData[i].time <= timeMs && markerData[i + 1].time >= timeMs) 
 		{
 			selectedMarker = i;
-			
-			currentImg = wxImage(imgList[markerData[i].numImg]);
-
-			resizeRatio_x = double(GetSize().x) / currentImg.GetWidth();
-			resizeRatio_y = double(GetSize().y) / currentImg.GetHeight();
-
-			currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
-							   currentImg.GetHeight() * resizeRatio_y, 
-							   wxIMAGE_QUALITY_HIGH);
-
-			// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
+			scaleImage(markerData[i].numImg);
 			createSelectedMarkerImage();
 			Refresh();
 
@@ -145,6 +103,7 @@ bool Partition::changeTime(double timeMs)
 
 	return false;
 }
+
 void Partition::createSelectedMarkerImage()
 {
 	t_size size = markerData[selectedMarker].size;
@@ -162,43 +121,37 @@ void Partition::createSelectedMarkerImage()
 	img.SetRGB(wxRect(0, 0, x, y), 180, 180, 180);
 	currentMarkerImg = img;
 }
+
+void Partition::scaleImage(const int& imagelistPosition)
+{
+	int x = GetSize().x - 100, y = GetSize().y - 100;
+	currentImg = wxImage( imgList[imagelistPosition] );
+	resizeRatio_x = double(x) / currentImg.GetWidth();
+	resizeRatio_y = double(y) / currentImg.GetHeight();
+	currentImg.Rescale(x, y, wxIMAGE_QUALITY_HIGH);
+}
+
 void Partition::mSize(wxSize size)
 {
-	wxLongLong clickTime = wxGetLocalTimeMillis();
-	//_DEBUG_ DSTREAM << "CLICKTIME : Partition : " << clickTime << endl;
-	if(clickTime - pastResizeTick >= wxLongLong(400))
-	{
-		this->SetSize(size);
-		if(markerData)
-		{
-			_DEBUG_ DSTREAM << " Resizing Partition" << endl;
+	//wxLongLong clickTime = wxGetLocalTimeMillis();
+	//if(clickTime - pastResizeTick >= wxLongLong(400))
+	//pastResizeTick = clickTime;
 
-			// TODO S'ASSURER QU'ON NE DEPASSE PAS LA GRANDEUR DU TABLEAU.
-			currentImg = wxImage(imgList[markerData[selectedMarker].numImg]);
-
-			resizeRatio_x = double(size.x) / currentImg.GetWidth();
-			resizeRatio_y = double(size.y) / currentImg.GetHeight();
-
-			currentImg.Rescale(size.x, size.y, wxIMAGE_QUALITY_HIGH);
-
-			//currentImg.Rescale(currentImg.GetWidth() * resizeRatio_x, 
-			//					currentImg.GetHeight() * resizeRatio_y, 
-			//					wxIMAGE_QUALITY_HIGH);
-
-			createSelectedMarkerImage();
-			Refresh();
-		}
-	}
-	pastResizeTick = clickTime;
+	SetSize(size);
+	scaleImage(markerData[selectedMarker].numImg);
+	createSelectedMarkerImage();
+	Refresh();
 }
 
 void Partition::OnMouseLeftDown(wxMouseEvent& event)
 {
 	
 }
+
 void Partition::OnMouseLeftUp(wxMouseEvent& event)
 {
 }
+
 void Partition::OnMouseMotion(wxMouseEvent& event)
 {
 	//wxPoint pt = event.GetPosition();
@@ -227,19 +180,20 @@ void Partition::OnMouseMotion(wxMouseEvent& event)
 	//	Refresh();
 	//}
 }
+
 void Partition::OnPaint(wxPaintEvent& event)
 {
     wxAutoBufferedPaintDC dc(this);
 	wxSize size = this->GetSize();
 
-	dc.SetPen(wxPen(wxColor(80, 80, 80), 1, wxSOLID));
-    dc.SetBrush(wxBrush(wxColor(80, 80, 80)));
-    dc.DrawRectangle(wxRect(0, 0, size.x, size.y));
+	dc.SetPen( wxPen( wxColor(0, 0, 0), 2, wxSOLID) );
+    dc.SetBrush( wxBrush( wxColor(250, 250, 250) ) );
+    dc.DrawRectangle( wxRect(0, 0, size.x, size.y) );
 
 	if(currentImg.IsOk())
 	{
 		wxBitmap img(currentImg);
-		dc.DrawBitmap(img, 0, 0);
+		dc.DrawBitmap(img, 50, 50);
 	}
 
 	if(currentMarkerImg.IsOk())
@@ -248,6 +202,6 @@ void Partition::OnPaint(wxPaintEvent& event)
 		wxBitmap img(currentMarkerImg);
 		
 		t_point pt = markerData[selectedMarker].point;
-		dc.DrawBitmap(currentMarkerImg, pt.x * resizeRatio_x, pt.y * resizeRatio_y);
+		dc.DrawBitmap(currentMarkerImg, 50 + pt.x * resizeRatio_x, 50 + pt.y * resizeRatio_y);
 	}
 }

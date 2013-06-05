@@ -42,9 +42,7 @@ public:
     virtual void navigate(double pos);
 	virtual bool loadVideo(const char* path);
 
-
 private:
-
 	libvlc_instance_t* vlcInstance;
 	libvlc_media_t* vlcMedia;
 	libvlc_media_player_t* vlcPlayer;
@@ -52,15 +50,20 @@ private:
 
     virtual void videoMovedCallback();
     void OnVideoCallback(wxCommandEvent& event);
+	void videoTimeCallback();
+	//void OnTimeCallback(wxCommandEvent& event);
 
     VideoID videoID_;
 
     // VLC Callbacks
     static void vlcPositionChanged(const libvlc_event_t *event, void* data);
+	static void vlcTimeChanged(const libvlc_event_t *event, void* data);
 
     bool firstPlay_;
 
     DECLARE_EVENT_TABLE()
+
+	_DEBUG_ int nb_time_callback;
 };
 
 #endif // _VLCVIDEOPLAYER_H_

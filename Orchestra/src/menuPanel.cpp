@@ -182,7 +182,7 @@ int MenuPanel::creerMenu()
 	axMultipleBitmap scrollBarImg(wxT("resources/widget/scrollSmall.png"), 2, wxSize(11, 33));
 
 	// Create axTreeMenu.
-	menu = new axTreeMenu(this, wxID_ANY, wxPoint(0, 30), GetSize(), &scrollBarImg);
+	menu = new axTreeMenu(this, wxID_ANY, wxPoint(0, 30), wxSize(GetSize().x, GetSize().y - 30), &scrollBarImg);
 
 	// Images for folder and subfolder.
 	axMultipleBitmap* mainNodeImg = new axMultipleBitmap(wxT("resources/widget/mainNode2.png"),  2, wxSize(12, 12));

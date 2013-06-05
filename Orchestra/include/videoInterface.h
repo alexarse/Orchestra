@@ -16,7 +16,6 @@ struct VideoID
     int videoStop;
 };
 
-
 class VideoInterface// : public virtual wxPanel
 {
 public:

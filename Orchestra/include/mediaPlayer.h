@@ -20,19 +20,19 @@ public:
     MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size);
 
 	/********************************************************************************//**
-	 * @brief  Load 3d media files and video files. Calls respective functions inside classes. Returns false if it fails.
+	 * @brief Load 3D media files and video files. Calls respective functions inside classes. 
 	 * @param Data3d 3D data, WE DONT KNOW YET WHAT!!!
      * @param videoPath Cleaned-up path to video for loading.
+	 * @return false if it fails.
 	 ***********************************************************************************/
-    bool loadMedia(const char* videoPath); // @todo Implement loading 3d data!
+    bool loadMedia(const char* videoPath); // @todo Implement loading 3D data!
 
 	/********************************************************************************//**
-	 * @brief  Resize the Media Player (can not override minimum).
+	 * @brief Resize the Media Player (can not override minimum).
 	 * @param size Resize parameters.
 	 ***********************************************************************************/
     void mSize(const wxSize& size);
 
-    // Defines
 	/// @todo Needs Documentation.
     static const wxSize MINSIZE;
 

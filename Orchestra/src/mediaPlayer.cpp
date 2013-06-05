@@ -3,7 +3,7 @@
 
 const wxSize MediaPlayer::MINSIZE = wxSize(300, 500); // If you change this, also change VlcVideoPlayer MINSIZE!
 
-// IDs
+// Event IDs
 enum
 {
     BACK_BTN = 8000,
@@ -19,12 +19,8 @@ enum
     VIDEO_STOP
 };
 
-//DEFINE_EVENT_TYPE(vlcEVT_POS)
-
 // Events
 BEGIN_EVENT_TABLE(MediaPlayer, wxPanel)
-	//EVT_PAINT(MediaPlayer::OnPaint)
-
     EVT_BUTTON(BACK_BTN, MediaPlayer::OnBackBtn)
 	EVT_BUTTON(STOP_BTN, MediaPlayer::OnStopBtn)
 	EVT_BUTTON(PLAY_PAUSE_BTN, MediaPlayer::OnPlayPauseBtn)
@@ -35,10 +31,6 @@ BEGIN_EVENT_TABLE(MediaPlayer, wxPanel)
 	EVT_BUTTON(SLIDER_MOTION, MediaPlayer::OnSliderMotion)
 
     EVT_BUTTON(VIDEO_MOTION, MediaPlayer::changeSlider)
-
-    //EVT_BUTTON(TEST, MediaPlayer::changeSlider)
-
-	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
 	//EVT_BUTTON(ID_VOLUME_CHANGE, ControlBar::OnVolumeChange)
 END_EVENT_TABLE()
 
@@ -48,10 +40,8 @@ MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
 	this->SetBackgroundColour(axColor(80, 80, 80));
 
     // Create controlBar first, to pass pointer to videoInterface (for callback).
-    controlBar = new ControlBar(this, wxID_ANY,
-    			     wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y),
-    			     wxSize(GetSize().x, ControlBar::MINSIZE.y));
-
+    controlBar = new ControlBar(this, wxID_ANY, wxPoint(0 , GetSize().y - ControlBar::MINSIZE.y),
+    							wxSize(GetSize().x, ControlBar::MINSIZE.y));
 
     // videoInterface IDs
 	VideoID videoID;
@@ -59,7 +49,6 @@ MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     videoID.videoStop = VIDEO_STOP;
 
     videoInterface = new VlcVideoPlayer(this, videoID, wxPoint(0, 0), wxSize(GetSize().x, GetSize().y - ControlBar::MINSIZE.y));
-
 }
 
 bool MediaPlayer::loadMedia(const char* videoPath)

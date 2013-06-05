@@ -80,7 +80,7 @@ private:
 	* @brief Create and resize a transparent image for the selected marker.
 	***********************************************************************************/
 	void createSelectedMarkerImage();
-
+	void scaleImage(const int& imagelistPosition);
 	void OnMouseLeftDown(wxMouseEvent& event);
 	void OnMouseLeftUp(wxMouseEvent& event);
 	void OnMouseMotion(wxMouseEvent& event);

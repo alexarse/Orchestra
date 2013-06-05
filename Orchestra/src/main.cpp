@@ -28,36 +28,32 @@ MainFrame::MainFrame(const wxString& title): wxFrame(NULL, wxID_ANY, title, wxPo
 {
 	SetBackgroundColour(axColor(80, 80, 80));
 	SetMinSize(wxSize(700, 500));
-	
 	CreateMenu();
 	
 	mainPanel = new wxPanel(this, wxID_ANY, wxPoint(0, 0), this->GetSize());
 	mainPanel->SetBackgroundColour(wxColor(80, 80, 80));
 
 	menuPanel = new MenuPanel(mainPanel, MAIN_FRAME_MENU_EVENT, 
-							  wxPoint(0, 0), wxSize(150, 500), 
+							  wxPoint(0, 0), wxSize(150, 400), 
 							  wxGetCwd() + wxT("/resources/data/") ); 
 
 	wxSize s = GetSize();
 	int x = (s.x - menuPanel->GetSize().x) * 0.5;
 
 	// Create mediaPlayer
-    mediaPlayer = new MediaPlayer(mainPanel, wxID_ANY, 
-    							  wxPoint(menuPanel->GetSize().x ,0), 
-								  wxSize(wxSize(x, s.y)) );
-
+    mediaPlayer = new MediaPlayer(mainPanel, wxID_ANY, wxPoint(menuPanel->GetSize().x ,0), wxSize(wxSize(x, s.y)) );
+	
 	partition = new Partition(mainPanel, wxID_ANY, 
 							  wxPoint(mediaPlayer->GetSize().x + menuPanel->GetSize().x, s.y),
 							  wxSize(x, s.y));
 	
-	partition->loadInfo(menuPanel->getSelectionInfo().markerData, menuPanel->getSelectionInfo().paritionImg);
+	partition->loadInfo( menuPanel->getSelectionInfo().markerData, menuPanel->getSelectionInfo().paritionImg );
 
 	Maximize(true);
-	//resize();
 
-	/// @todo Sa ne marche pas sur mon ordi ????
-    //char* path = "resources/test.mp4";
-    //mediaPlayer->loadMedia(path);
+	// @todo a changer.
+    char* path = "resources/test.mp4";
+    mediaPlayer->loadMedia( path );
 }
 
 void MainFrame::OnSize(wxSizeEvent& event)
