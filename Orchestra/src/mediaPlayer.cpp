@@ -48,7 +48,10 @@ MediaPlayer::MediaPlayer(wxWindow* win, wxWindowID id, wxPoint pt, wxSize size)
     videoID.videoMoved = VIDEO_MOTION;
     videoID.videoStop = VIDEO_STOP;
 
-    videoInterface = new VlcVideoPlayer(this, videoID, wxPoint(0, 0), wxSize(GetSize().x, GetSize().y - ControlBar::MINSIZE.y));
+	wxSize mediaSize(GetSize().x, (GetSize().y - ControlBar::MINSIZE.y) * 0.5);
+	device3D = new Device3D(this, wxPoint(0, 0), mediaSize, irr::video::EDT_OPENGL, true);
+    videoInterface = new VlcVideoPlayer(this, videoID, wxPoint(0, mediaSize.y), mediaSize);
+	
 }
 
 bool MediaPlayer::loadMedia(const char* videoPath)
@@ -58,29 +61,29 @@ bool MediaPlayer::loadMedia(const char* videoPath)
 
 void MediaPlayer::mSize(const wxSize& newSize)
 {
-        wxSize size = this->GetSize();
+    wxSize size = this->GetSize();
 
-		// Resize x
-        if (newSize.x >= MINSIZE.x)
-            size.x = newSize.x;
+	// Resize 
+    if (newSize.x >= MINSIZE.x) size.x = newSize.x;
+    if (newSize.y >= MINSIZE.y) size.y = newSize.y;
 
-        // Resize y
-        if (newSize.y >= MINSIZE.y)
-            size.y = newSize.y;
-
-		if(size != GetSize())
-		{
-			this->SetSize(size);
-			Refresh();
-
+	if(size != GetSize())
+	{
+		SetSize(size);
+		Refresh();
 
         // Resize children with newSize, so they never resize smaller than MediaPlayer::MINSIZE
-        this->controlBar->mSize(newSize);
-        this->videoInterface->mSize(wxSize(newSize.x, newSize.y - ControlBar::MINSIZE.y));
+        controlBar->mSize(newSize);
+
+		wxSize mediaSize(newSize.x, (newSize.y - ControlBar::MINSIZE.y) * 0.5);
+
+        videoInterface->mSize(mediaSize);
+		((VlcVideoPlayer*)videoInterface)->SetPosition(wxPoint(0, mediaSize.y));
+		device3D->mSize(mediaSize);
+		
 
         _DEBUG_ DSTREAM << "Resizing MediaPlayer: " << size.x << "x, " << size.y << "y." << endl;
     }
-
 }
 
 // Events
@@ -89,16 +92,19 @@ void MediaPlayer::OnBackBtn(wxCommandEvent& event)
     videoInterface->backward();
     _DEBUG_ DSTREAM << "MediaPlayer OnBackBtn" << endl;
 }
+
 void MediaPlayer::OnStopBtn(wxCommandEvent& event)
 {
     videoInterface->stop();
     controlBar->setSliderValue(0.0);
     _DEBUG_ DSTREAM << "MediaPlayer OnStopBtn" << endl;
 }
+
 void MediaPlayer::OnPlayPauseBtn(wxCommandEvent& event)
 {
     videoInterface->playPause();
 }
+
 void MediaPlayer::OnFwrdBtn(wxCommandEvent& event)
 {
     videoInterface->forward();
@@ -110,11 +116,13 @@ void MediaPlayer::OnSliderLeftDown(wxCommandEvent& event)
     videoInterface->mute();
     videoInterface->playPause();
 }
+
 void MediaPlayer::OnSliderLeftUp(wxCommandEvent& event)
 {
     videoInterface->unMute();
     videoInterface->playPause();
 }
+
 void MediaPlayer::OnSliderMotion(wxCommandEvent& event)
 {
     videoInterface->navigate(controlBar->getSliderValue());

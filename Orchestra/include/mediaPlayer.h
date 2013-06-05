@@ -5,6 +5,8 @@
 #include "ControlBar.h"
 #include "VideoInterface.h"
 #include "VlcVideoPlayer.h"
+#include "3DPanel.h"
+
 
 /// @todo Needs Documentation.
 class MediaPlayer : public wxPanel
@@ -39,8 +41,7 @@ public:
 private:
     VideoInterface* videoInterface;
     ControlBar* controlBar;
-
-    // Interface
+	Device3D* device3D;
 
     // Events
     void OnBackBtn(wxCommandEvent& event);

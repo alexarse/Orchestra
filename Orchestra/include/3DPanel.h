@@ -28,7 +28,7 @@ typedef irr::core::quaternion				irr_quatornion;
 class Device3D : public wxWindow
 {
 public:
-	Device3D(wxWindow* win, irr_DriverType type = irr::video::EDT_OPENGL, bool bResizeable = true);
+	Device3D(wxWindow* win, wxPoint point, wxSize size, irr_DriverType type = irr::video::EDT_OPENGL, bool bResizeable = true);
 	~Device3D();
 
 	//inline irr_Device		*GetHandle()		{ return irrDevice; }
@@ -43,6 +43,8 @@ public:
 						  irr_Vector3D& position = irr_Vector3D(0.0f, 0.0f, 0.0f), 
 						  irr_Vector3D& lookat = irr_Vector3D(0.0f, 0.0f, 1.0f), 
 						  irr_S32 id = 1);
+
+	void mSize(const wxSize& newSize);
 
 	//static const wxSize MINSIZE;
 protected:
@@ -60,7 +62,6 @@ protected:
 	void OnMouseLeftDown(wxMouseEvent& event);
 	void OnMouseMotion(wxMouseEvent& event);
 	void OnMouseLeftUp(wxMouseEvent& event);
-
 
 	DECLARE_EVENT_TABLE()
 };

@@ -11,44 +11,54 @@ BEGIN_EVENT_TABLE(Device3D, wxWindow)
 END_EVENT_TABLE()
 
 
-Device3D::Device3D(wxWindow* win, irr_DriverType type, bool bResizeable)
-		   : wxWindow(win, wxID_ANY, wxPoint(0, 0), wxSize(500, 500))
+Device3D::Device3D(wxWindow* win, wxPoint point, wxSize size, irr_DriverType type, bool bResizeable)
+		   : wxWindow(win, wxID_ANY, point, size)
 {
+	SetBackgroundColour(wxColor(0, 0, 0));
 	irr_CreateParam param;
 	
 	//Window Only
 	param.WindowId = reinterpret_cast<void *> ((HWND) this->GetHandle());
 	param.DriverType = type;
 	param.Doublebuffer = true;
-	param.WindowSize = irr_Dimension2D(500, 500);
+	param.WindowSize = irr_Dimension2D(size.x, size.y);
 
 	irrDevice = irr::createDeviceEx(param);
 
 	theta = M_PI * 0.5;
-	camera_ = AddCamera(0, irr_Vector3D(cos(theta) * 1.8, 2.0f, sin(theta) * 1.8), irr_Vector3D(0.0f, 2.0f, 0.0f));
+	float v1_x = 1.0,
+		  v1_y = 12.0,
+		  v1_z = 15,
+
+		  v2_x = 1.0,
+		  v2_y = 12.0,
+		  v2_z = 0.0;
+	
+	camera_ = AddCamera(0, irr_Vector3D(v1_x, v1_y, v1_z), irr_Vector3D(v2_x, v2_y, v2_z));
 
 	irr_Mesh* mesh = GetSceneManager()->getMesh("resources/male.x");
 	irr_SceneMesh* node = GetSceneManager()->addAnimatedMeshSceneNode(mesh);
 
 	if (node)
 	{
+		//node->setPosition(irr_Vector3D(0, -5, -5));
+		node->setPosition(irr_Vector3D(0, 0, 0));
 		node->setJointMode(irr::scene::EJUOR_CONTROL);
-		node->setPosition(irr_Vector3D(0, -5, -5));
 		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		node->setMaterialFlag(irr::video::EMF_TRILINEAR_FILTER, true);
 		node->setMaterialFlag(irr::video::EMF_ANTI_ALIASING, true);
 		node->setRotation(irr_Vector3D(180, 180, 0));
-		node->setScale(irr_Vector3D(0.65, 0.65, 0.65));
+		node->setScale(irr_Vector3D(1, 1, 1));
 			
 		node->setMaterialTexture(0, irrDevice->getVideoDriver()->getTexture("resources/male_c.png"));
 
 		// Afficher tous les bones.
-		_DEBUG_		irr_Bone* bone;
-		_DEBUG_		for(int i = 0; i < node->getJointCount(); ++i)
-		_DEBUG_		{
-		_DEBUG_			bone = node->getJointNode(i);
-		_DEBUG_			_DEBUG_ DSTREAM << "BONE NAME : " << bone->getName() << endl;
-		_DEBUG_		}
+		//_DEBUG_		irr_Bone* bone;
+		//_DEBUG_		for(int i = 0; i < node->getJointCount(); ++i)
+		//_DEBUG_		{
+		//_DEBUG_			bone = node->getJointNode(i);
+		//_DEBUG_			_DEBUG_ DSTREAM << "BONE NAME : " << bone->getName() << endl;
+		//_DEBUG_		}
 
 		hand_		= node->getJointNode("pc_rig_hand_L");
 		hips_		= node->getJointNode("pc_rig_hips");
@@ -80,10 +90,15 @@ irr_Camera* Device3D::AddCamera(irr_Node* parent, irr_Vector3D& position, irr_Ve
 {
    irr_SceneManager* irrSceneMgr = GetSceneManager();
 	
-   if (irrSceneMgr)
-	  return (irr_Camera*) irrSceneMgr->addCameraSceneNode(parent, position, lookat);
-   else
-	  return NULL;	
+   if (irrSceneMgr) return (irr_Camera*) irrSceneMgr->addCameraSceneNode(parent, position, lookat);
+   else return NULL;	
+}
+
+void Device3D::mSize(const wxSize& newSize)
+{
+	irrDevice->getVideoDriver()->OnResize(irr::core::dimension2d<irr::u32>(newSize.x, newSize.y));
+	SetSize(newSize);
+	Refresh();
 }
 
 void Device3D::OnMouseLeftUp(wxMouseEvent& event)
@@ -93,6 +108,7 @@ void Device3D::OnMouseLeftUp(wxMouseEvent& event)
 		ReleaseMouse();
 	}
 }
+
 void Device3D::OnMouseMotion(wxMouseEvent& event)
 {
 	int x = event.GetX() - clickPt.x;
@@ -110,7 +126,7 @@ void Device3D::OnMouseMotion(wxMouseEvent& event)
 
 		upper_arm_L->setRotation(rot);
 
-		_DEBUG_ DSTREAM << "VECTOR : " << rot.X << ", " << rot.Y << ", " << rot.Z << endl;
+		//_DEBUG_ DSTREAM << "VECTOR : " << rot.X << ", " << rot.Y << ", " << rot.Z << endl;
 
 		//_DEBUG_ DSTREAM << "MOTION" << endl;
 		//theta += (x - clickPts_x) * -0.0002;
@@ -126,6 +142,7 @@ void Device3D::OnMouseMotion(wxMouseEvent& event)
 		Refresh();
 	}
 }
+
 void Device3D::OnMouseLeftDown(wxMouseEvent& event)
 {	
 	clickPt = event.GetPosition();
@@ -155,7 +172,7 @@ void Device3D::OnPaint(wxPaintEvent &event)
 
 		if(driver)
 		{
-			 driver->beginScene(true, true, irr_Color(200, 80, 80, 80));
+			 driver->beginScene(true, true, irr_Color(200, 40, 40, 40));
 
 			if(scenemgr) scenemgr->drawAll();
 

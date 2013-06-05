@@ -11,9 +11,6 @@
 
 using namespace std;
 
-//-----------------------------------------------------------------------------------
-// Partition
-//-----------------------------------------------------------------------------------
 BEGIN_EVENT_TABLE(Partition, wxPanel)
 	EVT_PAINT(Partition::OnPaint)
 	EVT_LEFT_DOWN(Partition::OnMouseLeftDown)
