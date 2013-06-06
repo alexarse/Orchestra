@@ -32,7 +32,7 @@ struct t_folder
 class MenuPanel: public wxPanel
 {
 public:
-	MenuPanel(wxWindow* win, const wxWindowID& id, wxPoint pos, wxSize size, wxString path);
+	MenuPanel(wxWindow* win, const wxWindowID& id, wxPoint pos, wxSize size, wxString currentFolderPath);
 
 	/********************************************************************************//**
 	* @brief Resize
@@ -52,6 +52,11 @@ private:
 
 	int remplirTableauInformation();
 	int creerMenu();
+
+	axTreeMenuData fillMainNodeData();
+	axTreeMenuData fillSubNodeData();
+	wxString getFileExtension(wxString filePath);
+	void addFilesToFolderInfo(t_info& folder_info, wxArrayString* files);
 
 	void OnButtonTest(wxCommandEvent& event);
 	void OnMouseLeftDown(wxMouseEvent& event);
