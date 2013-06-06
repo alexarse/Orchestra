@@ -26,11 +26,11 @@ Device3D::Device3D(wxWindow* win, wxPoint point, wxSize size, irr_DriverType typ
 
 	theta = M_PI * 0.5;
 	float v1_x = 1.0,
-		  v1_y = 12.0,
+		  v1_y = 16.0,
 		  v1_z = 15,
 
 		  v2_x = 1.0,
-		  v2_y = 12.0,
+		  v2_y = 16.0,
 		  v2_z = 0.0;
 	
 	camera_ = AddCamera(0, irr_Vector3D(v1_x, v1_y, v1_z), irr_Vector3D(v2_x, v2_y, v2_z));
@@ -47,7 +47,7 @@ Device3D::Device3D(wxWindow* win, wxPoint point, wxSize size, irr_DriverType typ
 		node->setMaterialFlag(irr::video::EMF_TRILINEAR_FILTER, true);
 		node->setMaterialFlag(irr::video::EMF_ANTI_ALIASING, true);
 		node->setRotation(irr_Vector3D(180, 180, 0));
-		node->setScale(irr_Vector3D(1, 1, 1));
+		node->setScale(irr_Vector3D(1.3, 1.3, 1.3));
 			
 		node->setMaterialTexture(0, irrDevice->getVideoDriver()->getTexture("resources/male_c.png"));
 
